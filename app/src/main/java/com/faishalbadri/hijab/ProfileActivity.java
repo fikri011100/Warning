@@ -16,7 +16,12 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DecodeFormat;
+import com.bumptech.glide.request.RequestOptions;
+import com.faishalbadri.hijab.First.HomeActivity;
 import com.faishalbadri.hijab.Helper.Server;
 
 import net.gotev.uploadservice.MultipartUploadRequest;
@@ -26,16 +31,18 @@ import java.util.UUID;
 
 public class ProfileActivity extends AppCompatActivity {
 
-  Button btnIntentGaleri;
-  Button btnPostPhoto;
-  ImageView imgUserPhoto;
+  private ImageView imgUserDetailProfile;
+  private TextView txtUsernameDetailProfile;
+  private TextView txtEmailDetailProfile;
+  private ImageView imgButtonEdit;
+  private Button btnSendEditProfile;
 
   private int PICK_IMAGE_REQUEST = 1;
 
   private static final int STORAGE_PERMISSION_CODE = 123;
 
   private Bitmap bitmap;
-  String id;
+  String id,email,username,imgUsers;
   //Uri to store the image uri
   private Uri filePath;
 
@@ -43,26 +50,49 @@ public class ProfileActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_profile);
-    id = getIntent().getStringExtra("email");
-    Toast.makeText(this, id, Toast.LENGTH_SHORT).show();
+    setView();
+    getInten();
     requestStoragePermission();
-    btnIntentGaleri=  (Button)findViewById(R.id.btn_intent_galeri);
-    btnPostPhoto=  (Button)findViewById(R.id.btn_post_photo);
-    imgUserPhoto = (ImageView)findViewById(R.id.img_user_photo);
-    btnIntentGaleri.setOnClickListener(new OnClickListener() {
+    imgButtonEdit.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
         showFileChooser();
-        btnIntentGaleri.setEnabled(true);
+        imgButtonEdit.setEnabled(true);
       }
     });
-    btnPostPhoto.setOnClickListener(new OnClickListener() {
+    btnSendEditProfile.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
         uploadMultipart();
       }
     });
+    setProfile();
+  }
 
+  private void setProfile() {
+    txtEmailDetailProfile.setText(email);
+    txtUsernameDetailProfile.setText(username);
+    RequestOptions options = new RequestOptions().circleCrop().format(
+        DecodeFormat.PREFER_ARGB_8888).override(100,100);
+    Glide.with(getApplicationContext())
+        .load(Server.BASE_IMG + imgUsers)
+        .apply(options)
+        .into(imgUserDetailProfile);
+  }
+
+  private void setView() {
+    txtEmailDetailProfile= (TextView) findViewById(R.id.txt_email_detail_user_profile);
+    txtUsernameDetailProfile = (TextView)findViewById(R.id.txt_nama_detail_user_profile);
+    imgUserDetailProfile = (ImageView)findViewById(R.id.img_detail_user_profile);
+    imgButtonEdit = (ImageView)findViewById(R.id.btn_edit_photo);
+    btnSendEditProfile = (Button)findViewById(R.id.btn_post_edit);
+  }
+
+  private void getInten() {
+    id = getIntent().getStringExtra("id");
+    imgUsers = getIntent().getStringExtra("imageUser");
+    username = getIntent().getStringExtra("username");
+    email = getIntent().getStringExtra("email");
   }
 
   public void uploadMultipart() {
@@ -76,6 +106,7 @@ public class ProfileActivity extends AppCompatActivity {
           .setNotificationConfig(new UploadNotificationConfig())
           .setMaxRetries(2)
           .startUpload();
+      startActivity(new Intent(getApplicationContext(), HomeActivity.class));
     } catch (Exception exc) {
       Toast.makeText(this, exc.getMessage(), Toast.LENGTH_SHORT).show();
     }
@@ -98,7 +129,7 @@ public class ProfileActivity extends AppCompatActivity {
       filePath = data.getData();
       try {
         bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
-        imgUserPhoto.setImageBitmap(bitmap);
+        imgUserDetailProfile.setImageBitmap(bitmap);
 
       } catch (IOException e) {
         e.printStackTrace();

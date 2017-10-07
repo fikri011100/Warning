@@ -6,35 +6,58 @@
   android:layout_height="match_parent"
   tools:context="com.faishalbadri.hijab.ProfileActivity">
 
-
-  <Button
-    android:id="@+id/btn_intent_galeri"
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
+  <ImageView
+    android:id="@+id/img_detail_user_profile"
+    android:layout_width="150dp"
+    android:layout_height="150dp"
+    android:layout_margin="40dp"
+    android:src="@mipmap/ic_launcher"
     app:layout_constraintLeft_toLeftOf="parent"
     app:layout_constraintRight_toRightOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    android:layout_margin="20dp"
-    android:text="select photo here..."/>
-
-  <Button
-    android:id="@+id/btn_post_photo"
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    app:layout_constraintLeft_toLeftOf="parent"
-    app:layout_constraintRight_toRightOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/btn_intent_galeri"
-    android:layout_margin="20dp"
-    android:text="post image"/>
+    app:layout_constraintTop_toTopOf="parent" />
 
   <ImageView
-    android:id="@+id/img_user_photo"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    app:layout_constraintTop_toBottomOf="@+id/btn_post_photo"
-    app:layout_constraintLeft_toLeftOf="parent"
-    app:layout_constraintRight_toRightOf="parent"/>
+    android:id="@+id/btn_edit_photo"
+    android:layout_width="30dp"
+    android:layout_height="30dp"
+    android:layout_marginBottom="8dp"
+    android:src="@drawable/ic_photo_camera_black_24dp"
+    app:layout_constraintBottom_toBottomOf="@+id/img_detail_user_profile"
+    app:layout_constraintRight_toRightOf="@+id/img_detail_user_profile" />
 
+
+  <Button
+    android:id="@+id/btn_post_edit"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="40dp"
+    android:layout_marginBottom="8dp"
+    android:background="@drawable/background_button_pink"
+    android:text="simpan"
+    android:textColor="#fff"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/txt_email_detail_user_profile" />
+
+  <TextView
+    android:id="@+id/txt_nama_detail_user_profile"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="30dp"
+    android:text="fikri"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/img_detail_user_profile" />
+
+  <TextView
+    android:id="@+id/txt_email_detail_user_profile"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="30dp"
+    android:text="fikri.im@gmail.com"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/txt_nama_detail_user_profile" />
 
 
 </android.support.constraint.ConstraintLayout>

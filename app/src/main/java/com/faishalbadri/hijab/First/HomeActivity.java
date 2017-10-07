@@ -69,7 +69,7 @@ public class HomeActivity extends AppCompatActivity
     private RequestQueue reqLogin;
     private ImageView imageUseer;
     private TextView txtUsername;
-    String name;
+    String email;
     Gson gsonLogin;
     String URLLogin = Server.BASE_URL+"getUser.php";
     Bundle bundleKategori;
@@ -98,8 +98,8 @@ public class HomeActivity extends AppCompatActivity
         setFirstFragment();
         sesi = new SessionManager(getApplicationContext());
         HashMap<String, String> user = sesi.getUserDetails();
-        name = user.get(SessionManager.kunci_email);
-        Log.i("nama",name);
+        email = user.get(SessionManager.kunci_email);
+        Log.i("nama",email);
         setTitle("Hijab News");
         getGsonLogin();
         getLoginPojo();
@@ -165,7 +165,7 @@ public class HomeActivity extends AppCompatActivity
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> param = new HashMap<String, String>();
-                param.put("email", name);
+                param.put("email", email);
                 return param;
             }
         };
@@ -180,7 +180,12 @@ public class HomeActivity extends AppCompatActivity
         linearLayout.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),ProfileActivity.class).putExtra("email",id));
+                Intent i = new Intent(getApplicationContext(), ProfileActivity.class);
+                i.putExtra("id", id);
+                i.putExtra("username", username);
+                i.putExtra("email", email);
+                i.putExtra("imageUser", imgUser);
+                startActivity(i);
             }
         });
     }
