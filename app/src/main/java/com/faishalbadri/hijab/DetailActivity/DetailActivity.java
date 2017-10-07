@@ -19,6 +19,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DecodeFormat;
+import com.bumptech.glide.request.RequestOptions;
 import com.faishalbadri.hijab.Adapter.AdapterMoreNewsDetail;
 import com.faishalbadri.hijab.Helper.Server;
 import com.faishalbadri.hijab.Model.PojoPerKategori;
@@ -76,11 +78,12 @@ public class DetailActivity extends AppCompatActivity {
         textDetail.setText(judul);
         textDetail.setSelected(true);
         DetailwebView.loadData(keterangan,"text/html","uutf/-8");
-        Glide.with(this)
-                .load(Server.BASE_IMG+gambar)
-                .placeholder(R.mipmap.ic_launcher)
-                .crossFade()
-                .into(DetailImageView);
+
+        RequestOptions options = new RequestOptions().fitCenter().format(DecodeFormat.PREFER_ARGB_8888).override(100,100);
+        Glide.with(getApplicationContext())
+            .load(Server.BASE_IMG + gambar)
+            .apply(options)
+            .into(DetailImageView);
     }
 
     private void initView() {

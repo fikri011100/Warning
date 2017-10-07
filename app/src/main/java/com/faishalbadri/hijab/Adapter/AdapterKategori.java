@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DecodeFormat;
+import com.bumptech.glide.request.RequestOptions;
 import com.faishalbadri.hijab.Helper.Server;
 import com.faishalbadri.hijab.Model.PojoKategori;
 import com.faishalbadri.hijab.R;
@@ -42,11 +44,11 @@ public class AdapterKategori extends RecyclerView.Adapter<AdapterKategori.ViewHo
     @Override
     public void onBindViewHolder(AdapterKategori.ViewHolder holder, int position) {
         final PojoKategori.KategoriBean listitem = list_data.get(position);
+        RequestOptions options = new RequestOptions().fitCenter().format(DecodeFormat.PREFER_ARGB_8888).override(100,100);
         Glide.with(context)
-                .load(Server.BASE_IMG + list_data.get(position).getKategori_gambar())
-                .crossFade()
-                .placeholder(R.mipmap.ic_launcher)
-                .into(holder.imgGrid);
+            .load(Server.BASE_IMG + listitem.getKategori_gambar())
+            .apply(options)
+            .into(holder.imgGrid);
         holder.txtGrid.setText(list_data.get(position).getKategori_nama());
         holder.cvGrid.setOnClickListener(new View.OnClickListener() {
             @Override

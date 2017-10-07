@@ -137,7 +137,6 @@ public class HomeFragment extends Fragment {
                 try {
                     if (String.valueOf(new JSONObject(response).getString("msg")).equals("Data Semua Isi Populer")){
                         try {
-                            Log.i("Response Data", response);
                             final PojoPopuler populer = gTop.fromJson(response, PojoPopuler.class);
                             final AdapterPopuler adapterPopuler = new AdapterPopuler(populer.getIsi(), getActivity());
                             rvHot.setAdapter(adapterPopuler);
@@ -170,7 +169,6 @@ public class HomeFragment extends Fragment {
                 try {
                     if (String.valueOf(new JSONObject(response).getString("msg")).equals("Data Semua Isi Populer")){
                         try {
-                            Log.i("Response Data", response);
                             final PojoPopuler populer = gTop.fromJson(response, PojoPopuler.class);
                             final AdapterPopuler adapterPopuler = new AdapterPopuler(populer.getIsi(), getActivity());
                             rvTop.setAdapter(adapterPopuler);
@@ -203,7 +201,6 @@ public class HomeFragment extends Fragment {
                 try {
                     if (String.valueOf(new JSONObject(response).getString("msg")).equals("Data Semua Isi")){
                         try {
-                            Log.i("Response Data", response);
                             final PojoIsiNew isinew = gNew.fromJson(response, PojoIsiNew.class);
                             final AdapterIsiNew adapterIsiNew = new AdapterIsiNew(isinew.getIsi(),getActivity());
                             rvNew.setAdapter(adapterIsiNew);

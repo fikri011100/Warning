@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DecodeFormat;
+import com.bumptech.glide.request.RequestOptions;
 import com.faishalbadri.hijab.ActivityList.ListVideoActivity;
 import com.faishalbadri.hijab.DetailActivity.DetailVideoActivity;
 import com.faishalbadri.hijab.Helper.Server;
@@ -42,10 +44,10 @@ public class AdapterListVideo extends RecyclerView.Adapter<AdapterListVideo.View
   @Override
   public void onBindViewHolder(AdapterListVideo.ViewHolder holder, int position) {
     final PojoVideo.VideoBean listitem = list_data.get(position);
+    RequestOptions options = new RequestOptions().fitCenter().format(DecodeFormat.PREFER_ARGB_8888).override(100,100);
     Glide.with(context)
-        .load(Server.imgus + listitem.getVideo()+Server.lanjut)
-        .crossFade()
-        .placeholder(R.mipmap.ic_launcher)
+        .load(Server.imgus + listitem.getVideo() + Server.lanjut)
+        .apply(options)
         .into(holder.img);
     holder.txtJudul.setText(listitem.getJudul_video());
     holder.txtJudul.setMaxLines(3);

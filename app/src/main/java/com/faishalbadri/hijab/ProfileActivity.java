@@ -43,7 +43,8 @@ public class ProfileActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_profile);
-    id=getIntent().getStringExtra("id_user");
+    id = getIntent().getStringExtra("email");
+    Toast.makeText(this, id, Toast.LENGTH_SHORT).show();
     requestStoragePermission();
     btnIntentGaleri=  (Button)findViewById(R.id.btn_intent_galeri);
     btnPostPhoto=  (Button)findViewById(R.id.btn_post_photo);
@@ -71,7 +72,7 @@ public class ProfileActivity extends AppCompatActivity {
 
       new MultipartUploadRequest(this, uploadId, Server.BASE_URL+"uploadimage.php")
           .addFileToUpload(path, "image")
-          .addParameter("id", "38")
+          .addParameter("id", id)
           .setNotificationConfig(new UploadNotificationConfig())
           .setMaxRetries(2)
           .startUpload();

@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DecodeFormat;
+import com.bumptech.glide.request.RequestOptions;
 import com.faishalbadri.hijab.DetailActivity.DetailActivity;
 import com.faishalbadri.hijab.Helper.Server;
 import com.faishalbadri.hijab.Model.PojoPopuler;
@@ -43,11 +45,11 @@ public class AdapterPopuler extends RecyclerView.Adapter<AdapterPopuler.ViewHold
     @Override
     public void onBindViewHolder(AdapterPopuler.ViewHolder holder, int position) {
         final PojoPopuler.IsiBean listitem = list_data.get(position);
+        RequestOptions options = new RequestOptions().fitCenter().format(DecodeFormat.PREFER_ARGB_8888).override(100,100);
         Glide.with(context)
-                .load(Server.BASE_IMG + list_data.get(position).getIsi_gambar())
-                .crossFade()
-                .placeholder(R.mipmap.ic_launcher)
-                .into(holder.img);
+            .load(Server.BASE_IMG + listitem.getIsi_gambar())
+            .apply(options)
+            .into(holder.img);
         holder.txtJudul.setText(list_data.get(position).getIsi_judul());
         holder.txtTanggal.setText(list_data.get(position).getIsi_tgl_upload().toString());
         holder.cardView.setOnClickListener(new View.OnClickListener() {
