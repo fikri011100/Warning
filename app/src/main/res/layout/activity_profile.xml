@@ -25,39 +25,90 @@
     app:layout_constraintBottom_toBottomOf="@+id/img_detail_user_profile"
     app:layout_constraintRight_toRightOf="@+id/img_detail_user_profile" />
 
-
-  <Button
-    android:id="@+id/btn_post_edit"
+  <android.support.v7.widget.CardView
+    android:id="@+id/cvUser"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
-    android:layout_margin="40dp"
-    android:layout_marginBottom="8dp"
-    android:background="@drawable/background_button_pink"
-    android:text="simpan"
-    android:textColor="#fff"
+    android:layout_margin="10dp"
     app:layout_constraintLeft_toLeftOf="parent"
     app:layout_constraintRight_toRightOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/txt_email_detail_user_profile" />
+    app:layout_constraintTop_toBottomOf="@+id/img_detail_user_profile">
 
-  <TextView
-    android:id="@+id/txt_nama_detail_user_profile"
+    <android.support.constraint.ConstraintLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_margin="10dp">
+
+      <TextView
+        android:id="@+id/usernamedummy"
+        android:layout_width="64dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="Name :"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+      <TextView
+        android:id="@+id/txt_nama_detail_user_profile"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:maxLines="1"
+        android:text="Faishal"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/usernamedummy"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
+  </android.support.v7.widget.CardView>
+
+  <android.support.v7.widget.CardView
     android:layout_width="0dp"
     android:layout_height="wrap_content"
-    android:layout_margin="30dp"
-    android:text="fikri"
+    android:layout_marginTop="10dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
     app:layout_constraintLeft_toLeftOf="parent"
     app:layout_constraintRight_toRightOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/img_detail_user_profile" />
+    app:layout_constraintTop_toBottomOf="@+id/cvUser">
 
-  <TextView
-    android:id="@+id/txt_email_detail_user_profile"
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    android:layout_margin="30dp"
-    android:text="fikri.im@gmail.com"
-    app:layout_constraintLeft_toLeftOf="parent"
-    app:layout_constraintRight_toRightOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/txt_nama_detail_user_profile" />
+    <android.support.constraint.ConstraintLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_margin="10dp">
+
+      <TextView
+        android:id="@+id/emaildummy"
+        android:layout_width="64dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="Email :"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+      <TextView
+        android:id="@+id/txt_email_detail_user_profile"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:maxLines="1"
+        android:text="Faishalalbadri@gmail.com"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/emaildummy"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
+  </android.support.v7.widget.CardView>
 
 
 </android.support.constraint.ConstraintLayout>

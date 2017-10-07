@@ -19,8 +19,8 @@ public class KritikSaran extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_kritik_saran);
-    edtSaran = (MaterialEditText)findViewById(R.id.edt_saran);
-    btnSend = (Button)findViewById(R.id.btn_send);
+    edtSaran = (MaterialEditText) findViewById(R.id.edt_saran);
+    btnSend = (Button) findViewById(R.id.btn_send);
     btnSend.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -28,10 +28,11 @@ public class KritikSaran extends AppCompatActivity {
       }
     });
   }
+
   private void getIntentEmail() {
     String saran = edtSaran.getText().toString();
     Intent email = new Intent(Intent.ACTION_SEND);
-    email.putExtra(Intent.EXTRA_EMAIL, new String[] {EMAIL_PINKY} );
+    email.putExtra(Intent.EXTRA_EMAIL, new String[]{EMAIL_PINKY});
     email.putExtra(Intent.EXTRA_SUBJECT, SUBJECT_PINKY);
     email.putExtra(Intent.EXTRA_TEXT, saran);
     email.setType("message/rfc822");

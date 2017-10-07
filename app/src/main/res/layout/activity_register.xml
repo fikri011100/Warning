@@ -92,4 +92,5 @@
     android:layout_gravity="center_horizontal"
     android:text="Already Registered, Login Me"
     android:textColor="#FCE4EC" />
+
 </LinearLayout>

@@ -9,24 +9,24 @@ import com.faishalbadri.hijab.R;
 
 public class SplashActivity extends AppCompatActivity {
 
-    SessionManager sesi;
+  SessionManager sesi;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_splash);
 
-        sesi = new SessionManager(SplashActivity.this);
+    sesi = new SessionManager(SplashActivity.this);
 
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                // pengecekan sesi
-                sesi.checkLogin();
-                finish();
-            }
-        }, 2000 ); // satuan dalam milisecond
+    Handler handler = new Handler();
+    handler.postDelayed(new Runnable() {
+      @Override
+      public void run() {
+        // pengecekan sesi
+        sesi.checkLogin();
+        finish();
+      }
+    }, 2000); // satuan dalam milisecond
 
-    }
+  }
 }

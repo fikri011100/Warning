@@ -56,7 +56,7 @@ public class DetailVideoActivity extends YouTubeBaseActivity implements
   private void setView() {
     ytVideo = (YouTubePlayerView) findViewById(R.id.ytVideo);
     txtJudul = (TextView) findViewById(R.id.txtJudulVideo);
-    adView = (AdView)findViewById(R.id.ad_detail_video);
+    adView = (AdView) findViewById(R.id.ad_detail_video);
   }
 
   private void putString() {
@@ -84,9 +84,10 @@ public class DetailVideoActivity extends YouTubeBaseActivity implements
 
     }
   }
+
   @Override
-  public void onInitializationFailure (YouTubePlayer.Provider provider,
-      YouTubeInitializationResult youTubeInitializationResult){
+  public void onInitializationFailure(YouTubePlayer.Provider provider,
+      YouTubeInitializationResult youTubeInitializationResult) {
 
     if (youTubeInitializationResult.isUserRecoverableError()) {
       youTubeInitializationResult.getErrorDialog(this, RECOVERY_DIALOG_REQUEST).show();
@@ -96,13 +97,15 @@ public class DetailVideoActivity extends YouTubeBaseActivity implements
       Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
     }
   }
+
   @Override
   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
-    if (requestCode ==RECOVERY_DIALOG_REQUEST) {
-      getYoutubePlayerProvider().initialize(Server.YT_CODE,this);
+    if (requestCode == RECOVERY_DIALOG_REQUEST) {
+      getYoutubePlayerProvider().initialize(Server.YT_CODE, this);
     }
   }
+
   protected YouTubePlayerView getYoutubePlayerProvider() {
     return ytVideo;
   }

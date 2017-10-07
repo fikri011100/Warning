@@ -1,12 +1,14 @@
 package com.faishalbadri.hijab;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -35,14 +37,13 @@ public class ProfileActivity extends AppCompatActivity {
   private TextView txtUsernameDetailProfile;
   private TextView txtEmailDetailProfile;
   private ImageView imgButtonEdit;
-  private Button btnSendEditProfile;
 
   private int PICK_IMAGE_REQUEST = 1;
 
   private static final int STORAGE_PERMISSION_CODE = 123;
 
   private Bitmap bitmap;
-  String id,email,username,imgUsers;
+  String id, email, username, imgUsers;
   //Uri to store the image uri
   private Uri filePath;
 
@@ -60,12 +61,6 @@ public class ProfileActivity extends AppCompatActivity {
         imgButtonEdit.setEnabled(true);
       }
     });
-    btnSendEditProfile.setOnClickListener(new OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        uploadMultipart();
-      }
-    });
     setProfile();
   }
 
@@ -73,7 +68,7 @@ public class ProfileActivity extends AppCompatActivity {
     txtEmailDetailProfile.setText(email);
     txtUsernameDetailProfile.setText(username);
     RequestOptions options = new RequestOptions().circleCrop().format(
-        DecodeFormat.PREFER_ARGB_8888).override(100,100);
+        DecodeFormat.PREFER_ARGB_8888).override(150, 150);
     Glide.with(getApplicationContext())
         .load(Server.BASE_IMG + imgUsers)
         .apply(options)
@@ -81,11 +76,10 @@ public class ProfileActivity extends AppCompatActivity {
   }
 
   private void setView() {
-    txtEmailDetailProfile= (TextView) findViewById(R.id.txt_email_detail_user_profile);
-    txtUsernameDetailProfile = (TextView)findViewById(R.id.txt_nama_detail_user_profile);
-    imgUserDetailProfile = (ImageView)findViewById(R.id.img_detail_user_profile);
-    imgButtonEdit = (ImageView)findViewById(R.id.btn_edit_photo);
-    btnSendEditProfile = (Button)findViewById(R.id.btn_post_edit);
+    txtEmailDetailProfile = (TextView) findViewById(R.id.txt_email_detail_user_profile);
+    txtUsernameDetailProfile = (TextView) findViewById(R.id.txt_nama_detail_user_profile);
+    imgUserDetailProfile = (ImageView) findViewById(R.id.img_detail_user_profile);
+    imgButtonEdit = (ImageView) findViewById(R.id.btn_edit_photo);
   }
 
   private void getInten() {
@@ -97,16 +91,27 @@ public class ProfileActivity extends AppCompatActivity {
 
   public void uploadMultipart() {
     String path = getPath(filePath);
+    final ProgressDialog pd = new ProgressDialog(ProfileActivity.this);
+    pd.setMessage("Loading");
+    pd.show();
     try {
       String uploadId = UUID.randomUUID().toString();
 
-      new MultipartUploadRequest(this, uploadId, Server.BASE_URL+"uploadimage.php")
+      new MultipartUploadRequest(this, uploadId, Server.BASE_URL + "uploadimage.php")
           .addFileToUpload(path, "image")
           .addParameter("id", id)
           .setNotificationConfig(new UploadNotificationConfig())
           .setMaxRetries(2)
           .startUpload();
-      startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+      Handler handler = new Handler();
+      handler.postDelayed(new Runnable() {
+        @Override
+        public void run() {
+          pd.dismiss();
+          startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+          finish();
+        }
+      }, 4000);
     } catch (Exception exc) {
       Toast.makeText(this, exc.getMessage(), Toast.LENGTH_SHORT).show();
     }
@@ -124,13 +129,14 @@ public class ProfileActivity extends AppCompatActivity {
   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
 
-
-    if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+    if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null
+        && data.getData() != null) {
       filePath = data.getData();
+      uploadMultipart();
+
       try {
         bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
         imgUserDetailProfile.setImageBitmap(bitmap);
-
       } catch (IOException e) {
         e.printStackTrace();
       }
@@ -156,27 +162,39 @@ public class ProfileActivity extends AppCompatActivity {
 
   private void requestStoragePermission() {
     if (ContextCompat
-        .checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
+        .checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+        == PackageManager.PERMISSION_GRANTED) {
       return;
+    }
 
-    if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+    if (ActivityCompat
+        .shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
 
     }
-    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, STORAGE_PERMISSION_CODE);
+    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+        STORAGE_PERMISSION_CODE);
   }
 
   @Override
-  public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+  public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+      @NonNull int[] grantResults) {
 
     if (requestCode == STORAGE_PERMISSION_CODE) {
 
       if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
-        Toast.makeText(this, "Permission granted now you can read the storage", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Permission granted now you can read the storage", Toast.LENGTH_LONG)
+            .show();
       } else {
 
         Toast.makeText(this, "Oops you just denied the permission", Toast.LENGTH_LONG).show();
       }
     }
+  }
+
+  @Override
+  public void onBackPressed() {
+    startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+    finish();
   }
 }

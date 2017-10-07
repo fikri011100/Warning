@@ -25,6 +25,7 @@ import java.util.List;
  */
 
 public class AdapterListVideo extends RecyclerView.Adapter<AdapterListVideo.ViewHolder> {
+
   Activity context;
   List<PojoVideo.VideoBean> list_data;
 
@@ -44,7 +45,8 @@ public class AdapterListVideo extends RecyclerView.Adapter<AdapterListVideo.View
   @Override
   public void onBindViewHolder(AdapterListVideo.ViewHolder holder, int position) {
     final PojoVideo.VideoBean listitem = list_data.get(position);
-    RequestOptions options = new RequestOptions().fitCenter().format(DecodeFormat.PREFER_ARGB_8888).override(100,100);
+    RequestOptions options = new RequestOptions().fitCenter().format(DecodeFormat.PREFER_ARGB_8888)
+        .override(150, 150);
     Glide.with(context)
         .load(Server.imgus + listitem.getVideo() + Server.lanjut)
         .apply(options)
@@ -55,11 +57,11 @@ public class AdapterListVideo extends RecyclerView.Adapter<AdapterListVideo.View
     holder.cardView.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        Intent a = new Intent(v.getContext(),DetailVideoActivity.class);
-        a.putExtra("id",listitem.getId());
-        a.putExtra("judul_video",listitem.getJudul_video());
-        a.putExtra("video",listitem.getVideo());
-        a.putExtra("duration",listitem.getDuration());
+        Intent a = new Intent(v.getContext(), DetailVideoActivity.class);
+        a.putExtra("id", listitem.getId());
+        a.putExtra("judul_video", listitem.getJudul_video());
+        a.putExtra("video", listitem.getVideo());
+        a.putExtra("duration", listitem.getDuration());
         v.getContext().startActivity(a);
       }
     });
@@ -71,6 +73,7 @@ public class AdapterListVideo extends RecyclerView.Adapter<AdapterListVideo.View
   }
 
   public class ViewHolder extends RecyclerView.ViewHolder {
+
     TextView txtJudul, txtDuration;
     ImageView img;
     CardView cardView;

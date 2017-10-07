@@ -10,29 +10,29 @@
     android:id="@+id/edt_saran"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
-    app:met_textColorHint="#F06292"
-    app:met_baseColor="#F06292"
-    app:met_primaryColor="#030303"
-    app:met_errorColor="#F50057"
-    app:met_floatingLabel="highlight"
+    android:layout_margin="16dp"
+    android:hint="Masukkan Saran Anda"
+    android:maxLines="10"
     app:layout_constraintLeft_toLeftOf="parent"
     app:layout_constraintRight_toRightOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    android:layout_margin="16dp"
-    android:hint="Masukkan Saran Anda"/>
+    app:met_baseColor="#F06292"
+    app:met_errorColor="#F50057"
+    app:met_floatingLabel="highlight"
+    app:met_primaryColor="#030303"
+    app:met_textColorHint="#F06292" />
 
   <Button
     android:id="@+id/btn_send"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
-    app:layout_constraintRight_toRightOf="parent"
-    app:layout_constraintLeft_toLeftOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/edt_saran"
-    android:text="SEND"
     android:layout_margin="16dp"
     android:background="@color/colorPrimary"
+    android:text="SEND"
     android:textColor="#fff"
-    />
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/edt_saran" />
 
 
 </android.support.constraint.ConstraintLayout>

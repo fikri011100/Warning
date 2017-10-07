@@ -29,7 +29,7 @@ public class ListVideoActivity extends AppCompatActivity {
   private RequestQueue reqListVideo;
   private RecyclerView rvListVideo;
   private SwipeRefreshLayout swipeListVideo;
-  public String urlListVideo = Server.BASE_URL+"getVideo.php";
+  public String urlListVideo = Server.BASE_URL + "getVideo.php";
   private Gson gson;
 
   @Override
@@ -50,8 +50,8 @@ public class ListVideoActivity extends AppCompatActivity {
   }
 
   private void setView() {
-    rvListVideo = (RecyclerView)findViewById(R.id.rvListVideo);
-    swipeListVideo = (SwipeRefreshLayout)findViewById(R.id.swipeListVideo);
+    rvListVideo = (RecyclerView) findViewById(R.id.rvListVideo);
+    swipeListVideo = (SwipeRefreshLayout) findViewById(R.id.swipeListVideo);
   }
 
   private void setRefresh() {
@@ -77,33 +77,38 @@ public class ListVideoActivity extends AppCompatActivity {
   }
 
   private void loadData() {
-    StringRequest request = new StringRequest(Request.Method.GET, urlListVideo, new Response.Listener<String>() {
-      @Override
-      public void onResponse(String response) {
-        try {
-          if (String.valueOf(new JSONObject(response).getString("msg")).equals("Data Semua Video")){
+    StringRequest request = new StringRequest(Request.Method.GET, urlListVideo,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String response) {
             try {
-              Log.i("Response Data", response);
-              final PojoVideo populer = gson.fromJson(response, PojoVideo.class);
-              final AdapterListVideo adapterListVideo = new AdapterListVideo(populer.getVideo(), ListVideoActivity.this);
-              rvListVideo.setAdapter(adapterListVideo);
+              if (String.valueOf(new JSONObject(response).getString("msg"))
+                  .equals("Data Semua Video")) {
+                try {
+                  Log.i("Response Data", response);
+                  final PojoVideo populer = gson.fromJson(response, PojoVideo.class);
+                  final AdapterListVideo adapterListVideo = new AdapterListVideo(populer.getVideo(),
+                      ListVideoActivity.this);
+                  rvListVideo.setAdapter(adapterListVideo);
 
-            }catch (Exception e){
-              e.printStackTrace();
+                } catch (Exception e) {
+                  e.printStackTrace();
+                }
+              } else {
+                Toast
+                    .makeText(getApplicationContext().getApplicationContext(), "Database Is Null",
+                        Toast.LENGTH_LONG).show();
+              }
+            } catch (JSONException e) {
+
             }
-          }else {
-            Toast
-                .makeText(getApplicationContext().getApplicationContext(),"Database Is Null",Toast.LENGTH_LONG).show();
+
           }
-        }catch (JSONException e){
-
-        }
-
-      }
-    }, new Response.ErrorListener() {
+        }, new Response.ErrorListener() {
       @Override
       public void onErrorResponse(VolleyError error) {
-        Toast.makeText(getApplicationContext().getApplicationContext(),"Check Your Internet Connection",Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext().getApplicationContext(),
+            "Check Your Internet Connection", Toast.LENGTH_LONG).show();
       }
     });
     reqListVideo.add(request);

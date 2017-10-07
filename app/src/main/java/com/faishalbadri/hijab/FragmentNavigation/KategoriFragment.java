@@ -43,8 +43,9 @@ public class KategoriFragment extends Fragment {
   private View v;
   RequestQueue reqKategori;
   Gson gKategori;
-  String url = Server.BASE_URL+"getTbIsiPerKategori.php";
+  String url = Server.BASE_URL + "getTbIsiPerKategori.php";
   String id;
+
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
@@ -62,20 +63,22 @@ public class KategoriFragment extends Fragment {
       @Override
       public void onResponse(String response) {
         try {
-          if (String.valueOf(new JSONObject(response).getString("msg")).equals("Data Semua Isi")){
+          if (String.valueOf(new JSONObject(response).getString("msg")).equals("Data Semua Isi")) {
             try {
               Log.i("Response Data", response);
               final PojoIsiNew search = gKategori.fromJson(response, PojoIsiNew.class);
-              final AdapterIsiNew adapterPopuler = new AdapterIsiNew(search.getIsi(), getActivity());
+              final AdapterIsiNew adapterPopuler = new AdapterIsiNew(search.getIsi(),
+                  getActivity());
               rvKategoriFragment.setAdapter(adapterPopuler);
 
-            }catch (Exception e){
+            } catch (Exception e) {
               e.printStackTrace();
             }
-          }else {
-            Toast.makeText(getActivity().getApplicationContext(),"Database Is Null",Toast.LENGTH_LONG).show();
+          } else {
+            Toast.makeText(getActivity().getApplicationContext(), "Database Is Null",
+                Toast.LENGTH_LONG).show();
           }
-        }catch (JSONException e){
+        } catch (JSONException e) {
 
         }
 
@@ -101,7 +104,7 @@ public class KategoriFragment extends Fragment {
   }
 
   private void setView() {
-    rvKategoriFragment = (RecyclerView)v.findViewById(R.id.rvKategoriFragment);
+    rvKategoriFragment = (RecyclerView) v.findViewById(R.id.rvKategoriFragment);
     reqKategori = Volley.newRequestQueue(getActivity());
     GsonBuilder gbKategori = new GsonBuilder();
     gKategori = gbKategori.create();
@@ -109,7 +112,6 @@ public class KategoriFragment extends Fragment {
     kategori.setOrientation(LinearLayoutManager.VERTICAL);
     rvKategoriFragment.setLayoutManager(kategori);
   }
-
 
 
 }
