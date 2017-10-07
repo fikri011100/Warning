@@ -82,7 +82,7 @@ public class LoginActivity extends AppCompatActivity {
                     if (String.valueOf(new JSONObject(response).getString("msg")).equals("login berhasil")){
                         try {
                             sessionManager.createSession(edtEmailLogin.getText().toString());
-                            startActivity(new Intent(getApplicationContext(),HomeActivity.class).putExtra("set","first"));
+                            startActivity(new Intent(getApplicationContext(),HomeActivity.class).putExtra("email",edtEmailLogin.getText().toString()));
                             finish();
                         }catch (Exception e){
                             e.printStackTrace();

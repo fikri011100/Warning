@@ -1,254 +1,150 @@
 package com.faishalbadri.hijab;
 
-import android.app.ProgressDialog;
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Base64;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.ByteArrayOutputStream;
+import com.faishalbadri.hijab.Helper.Server;
+
+import net.gotev.uploadservice.MultipartUploadRequest;
+import net.gotev.uploadservice.UploadNotificationConfig;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.util.HashMap;
-import java.util.Map;
-import javax.net.ssl.HttpsURLConnection;
+import java.util.UUID;
 
 public class ProfileActivity extends AppCompatActivity {
-
-  Bitmap bitmap;
-
-  Boolean check = true;
-  ProgressDialog pd;
-
-  String imageName = "image_name";
-
-  String imagePath = "image_path";
-
-  String serverUploadPath = "http://api.santriprogrammer.com/hijab/library/editimguser.php";
 
   Button btnIntentGaleri;
   Button btnPostPhoto;
   ImageView imgUserPhoto;
 
+  private int PICK_IMAGE_REQUEST = 1;
+
+  private static final int STORAGE_PERMISSION_CODE = 123;
+
+  private Bitmap bitmap;
+  String id;
+  //Uri to store the image uri
+  private Uri filePath;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_profile);
-    ButterKnife.bind(this);
-    btnIntentGaleri = (Button)findViewById(R.id.btn_intent_galeri);
-    btnPostPhoto = (Button)findViewById(R.id.btn_post_photo);
+    id=getIntent().getStringExtra("id_user");
+    requestStoragePermission();
+    btnIntentGaleri=  (Button)findViewById(R.id.btn_intent_galeri);
+    btnPostPhoto=  (Button)findViewById(R.id.btn_post_photo);
     imgUserPhoto = (ImageView)findViewById(R.id.img_user_photo);
     btnIntentGaleri.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
-        intentGalery();
+        showFileChooser();
+        btnIntentGaleri.setEnabled(true);
       }
     });
     btnPostPhoto.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
-        postPhoto();
+        uploadMultipart();
       }
     });
+
+  }
+
+  public void uploadMultipart() {
+    String path = getPath(filePath);
+    try {
+      String uploadId = UUID.randomUUID().toString();
+
+      new MultipartUploadRequest(this, uploadId, Server.BASE_URL+"uploadimage.php")
+          .addFileToUpload(path, "image")
+          .addParameter("id", "38")
+          .setNotificationConfig(new UploadNotificationConfig())
+          .setMaxRetries(2)
+          .startUpload();
+    } catch (Exception exc) {
+      Toast.makeText(this, exc.getMessage(), Toast.LENGTH_SHORT).show();
+    }
+
+  }
+
+  private void showFileChooser() {
+    Intent intent = new Intent();
+    intent.setType("image/*");
+    intent.setAction(Intent.ACTION_GET_CONTENT);
+    startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
   }
 
   @Override
-  protected void onActivityResult(int RC, int RQC, Intent I) {
-    super.onActivityResult(RC, RQC, I);
-    if (RC == 1 && RQC == RESULT_OK && I != null && I.getData() != null) {
+  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
 
-      Uri uri = I.getData();
 
+    if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+      filePath = data.getData();
       try {
-
-        bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-
+        bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
         imgUserPhoto.setImageBitmap(bitmap);
 
       } catch (IOException e) {
-
         e.printStackTrace();
       }
     }
   }
 
+  public String getPath(Uri uri) {
+    Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+    cursor.moveToFirst();
+    String document_id = cursor.getString(0);
+    document_id = document_id.substring(document_id.lastIndexOf(":") + 1);
+    cursor.close();
 
-  private void postPhoto() {
-    ByteArrayOutputStream byteArrayOutputStreamObject ;
+    cursor = getContentResolver().query(
+        MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+        null, MediaStore.Images.Media._ID + " = ? ", new String[]{document_id}, null);
+    cursor.moveToFirst();
+    String path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+    cursor.close();
 
-    byteArrayOutputStreamObject = new ByteArrayOutputStream();
-
-    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStreamObject);
-
-    byte[] byteArrayVar = byteArrayOutputStreamObject.toByteArray();
-
-    final String ConvertImage = Base64.encodeToString(byteArrayVar, Base64.DEFAULT);
-
-    class AsyncTaskUploadClass extends AsyncTask<Void,Void,String> {
-
-      @Override
-      protected void onPreExecute() {
-
-        super.onPreExecute();
-
-        pd = ProgressDialog.show(ProfileActivity.this,"Image is Uploading","Please Wait",false,false);
-      }
-
-      @Override
-      protected void onPostExecute(String string1) {
-
-        super.onPostExecute(string1);
-
-        // Dismiss the progress dialog after done uploading.
-        pd.dismiss();
-
-        // Printing uploading success message coming from server on android app.
-        Toast.makeText(ProfileActivity.this,string1,Toast.LENGTH_LONG).show();
-
-        // Setting image as transparent after done uploading.
-        imgUserPhoto.setImageResource(android.R.color.transparent);
-
-
-      }
-
-      @Override
-      protected String doInBackground(Void... params) {
-
-        ImageProcessClass imageProcessClass = new ImageProcessClass();
-
-        HashMap<String,String> HashMapParams = new HashMap<String,String>();
-
-        HashMapParams.put(imageName, "name");
-
-        HashMapParams.put(imagePath, ConvertImage);
-
-        String FinalData = imageProcessClass.ImageHttpRequest(serverUploadPath, HashMapParams);
-
-        return FinalData;
-      }
-    }
-    AsyncTaskUploadClass AsyncTaskUploadClassOBJ = new AsyncTaskUploadClass();
-
-    AsyncTaskUploadClassOBJ.execute();
+    return path;
   }
 
-  public class ImageProcessClass{
+  private void requestStoragePermission() {
+    if (ContextCompat
+        .checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
+      return;
 
-    public String ImageHttpRequest(String requestURL,HashMap<String, String> PData) {
+    if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
 
-      StringBuilder stringBuilder = new StringBuilder();
-
-      try {
-
-        URL url;
-        HttpURLConnection httpURLConnectionObject ;
-        OutputStream OutPutStream;
-        BufferedWriter bufferedWriterObject ;
-        BufferedReader bufferedReaderObject ;
-        int RC ;
-
-        url = new URL(requestURL);
-
-        httpURLConnectionObject = (HttpURLConnection) url.openConnection();
-
-        httpURLConnectionObject.setReadTimeout(19000);
-
-        httpURLConnectionObject.setConnectTimeout(19000);
-
-        httpURLConnectionObject.setRequestMethod("POST");
-
-        httpURLConnectionObject.setDoInput(true);
-
-        httpURLConnectionObject.setDoOutput(true);
-
-        OutPutStream = httpURLConnectionObject.getOutputStream();
-
-        bufferedWriterObject = new BufferedWriter(
-
-            new OutputStreamWriter(OutPutStream, "UTF-8"));
-
-        bufferedWriterObject.write(bufferedWriterDataFN(PData));
-
-        bufferedWriterObject.flush();
-
-        bufferedWriterObject.close();
-
-        OutPutStream.close();
-
-        RC = httpURLConnectionObject.getResponseCode();
-
-        if (RC == HttpsURLConnection.HTTP_OK) {
-
-          bufferedReaderObject = new BufferedReader(new InputStreamReader(httpURLConnectionObject.getInputStream()));
-
-          stringBuilder = new StringBuilder();
-
-          String RC2;
-
-          while ((RC2 = bufferedReaderObject.readLine()) != null){
-
-            stringBuilder.append(RC2);
-          }
-        }
-
-      } catch (Exception e) {
-        e.printStackTrace();
-      }
-      return stringBuilder.toString();
     }
-
-    private String bufferedWriterDataFN(HashMap<String, String> HashMapParams) throws UnsupportedEncodingException {
-
-      StringBuilder stringBuilderObject;
-
-      stringBuilderObject = new StringBuilder();
-
-      for (Map.Entry<String, String> KEY : HashMapParams.entrySet()) {
-
-        if (check)
-
-          check = false;
-        else
-          stringBuilderObject.append("&");
-
-        stringBuilderObject.append(URLEncoder.encode(KEY.getKey(), "UTF-8"));
-
-        stringBuilderObject.append("=");
-
-        stringBuilderObject.append(URLEncoder.encode(KEY.getValue(), "UTF-8"));
-      }
-
-      return stringBuilderObject.toString();
-    }
-
+    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, STORAGE_PERMISSION_CODE);
   }
 
-  private void intentGalery() {
-    Intent intent = new Intent();
+  @Override
+  public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 
-    intent.setType("image/*");
+    if (requestCode == STORAGE_PERMISSION_CODE) {
 
-    intent.setAction(Intent.ACTION_GET_CONTENT);
+      if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
-    startActivityForResult(Intent.createChooser(intent, "Select Image From Gallery"), 1);
+        Toast.makeText(this, "Permission granted now you can read the storage", Toast.LENGTH_LONG).show();
+      } else {
+
+        Toast.makeText(this, "Oops you just denied the permission", Toast.LENGTH_LONG).show();
+      }
+    }
   }
 }

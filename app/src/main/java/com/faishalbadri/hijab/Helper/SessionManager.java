@@ -40,7 +40,6 @@ public class SessionManager {
             context.startActivity(i);
         }else {
             Intent i = new Intent(context, HomeActivity.class);
-            i.putExtra("set","first");
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(i);
