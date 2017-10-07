@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/home"
+            android:title="Home" />
+        <item
+          android:id="@+id/pinkyhijab"
+          android:title="Pinky Hijab" />
+        <item
+          android:id="@+id/allnews"
+          android:title="All News" />
+        <item
+          android:id="@+id/topnews"
+          android:title="Top News" />
+        <item
+          android:id="@+id/video"
+          android:title="Video" />
+        <item
+          android:id="@+id/event"
+          android:title="Event" />
+        <item
+          android:id="@+id/ebook"
+          android:title="E-Book" />
+        <item
+            android:id="@+id/vote"
+            android:title="Vote" />
+    </group>
+
+    <item android:title="Kategori">
+        <menu>
+            <item
+              android:id="@+id/muslimahinspiratif"
+              android:title="Muslimah Inspiratif" />
+            <item
+              android:id="@+id/muslimahworld"
+              android:title="Muslimah World" />
+            <item
+              android:id="@+id/community"
+              android:title="Community" />
+            <item
+              android:id="@+id/globalmuslim"
+              android:title="Global Muslim" />
+            <item
+              android:id="@+id/beauty"
+              android:title="Beauty" />
+            <item
+              android:id="@+id/fashion"
+              android:title="Fashion" />
+            <item
+              android:id="@+id/religi"
+              android:title="Religi" />
+            <item
+              android:id="@+id/lifestyle"
+              android:title="Lifestyle" />
+            <item
+              android:id="@+id/travel"
+              android:title="Travel" />
+            <item
+              android:id="@+id/cerpen"
+              android:title="Cerpen" />
+            <item
+              android:id="@+id/cerbung"
+              android:title="Cerbung" />
+            <item
+              android:id="@+id/kisahmu"
+              android:title="Kisahmu" />
+            <item
+              android:id="@+id/celeb"
+              android:title="Celebrity" />
+            <item
+              android:id="@+id/motivation"
+              android:title="Motivation" />
+            <item
+              android:id="@+id/financial"
+              android:title="Financial" />
+            <item
+              android:id="@+id/kesehatan"
+              android:title="Kesehatan" />
+            <item
+              android:id="@+id/mfb"
+              android:title="Musik,Film,Buku" />
+            <item
+              android:id="@+id/sport"
+              android:title="Sport" />
+            <item
+              android:id="@+id/tech"
+              android:title="Technology" />
+            <item
+              android:id="@+id/konsultasi"
+              android:title="Konsultasi" />
+            <item
+              android:id="@+id/eventupdate"
+              android:title="Event Update" />
+            <item
+              android:id="@+id/resep"
+              android:title="Resep" />
+            <item
+              android:id="@+id/kuliner"
+              android:title="Kuliner" />
+            <item
+              android:id="@+id/referensi"
+              android:title="Referensi" />
+        </menu>
+    </item>
+
+    <item android:title="Other">
+        <menu>
+            <item
+              android:id="@+id/kirimartikelmu"
+              android:title="Kirim Artikelmu" />
+            <item
+              android:id="@+id/kritiksaran"
+              android:title="Kritik&amp;Saran" />
+            <item
+              android:id="@+id/about"
+              android:title="About Us" />
+            <item
+                android:id="@+id/share"
+                android:title="Share" />
+            <item
+                android:id="@+id/logout"
+                android:title="Logout" />
+        </menu>
+    </item>
+
+</menu>

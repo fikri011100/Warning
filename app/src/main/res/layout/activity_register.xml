@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="#FF4081"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context="com.faishalbadri.hijab.First.LoginAndRegister.RegisterActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register User"
+        android:fontFamily="cursive"
+        android:textStyle="bold"
+        android:textSize="40dp"
+        android:layout_marginTop="30dp"
+        android:textColor="#FCE4EC"
+        android:layout_gravity="center_horizontal"/>
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Username"
+        android:padding="10dp"
+        app:met_textColorHint="#fff"
+        app:met_baseColor="#fff"
+        app:met_primaryColor="#fff"
+        app:met_errorColor="#f22a37"
+        app:met_floatingLabel="highlight"
+        android:fontFamily="sans-serif"
+        android:id="@+id/edt_username"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"/>
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        android:padding="10dp"
+        app:met_textColorHint="#fff"
+        app:met_baseColor="#fff"
+        app:met_primaryColor="#fff"
+        app:met_errorColor="#f22a37"
+        app:met_floatingLabel="highlight"
+        android:fontFamily="sans-serif"
+        android:id="@+id/edt_email"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp"/>
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:padding="10dp"
+        app:met_textColorHint="#fff"
+        app:met_baseColor="#fff"
+        app:met_primaryColor="#fff"
+        app:met_errorColor="#f22a37"
+        app:met_floatingLabel="highlight"
+        android:fontFamily="sans-serif"
+        android:id="@+id/edt_password"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="register"
+        android:id="@+id/btn_register"
+        android:background="@drawable/button_register"
+        android:fontFamily="sans-serif"
+        android:textColor="#fff"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Already Registered, Login Me"
+        android:textColor="#FCE4EC"
+        android:id="@+id/txt_registered"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center_horizontal"
+        />
+</LinearLayout>

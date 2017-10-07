@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="130dp"
+    android:layout_height="135dp"
+    android:layout_margin="0.5dp"
+    android:background="#d9d8d8"
+    android:id="@+id/cvGridView">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:src="@mipmap/ic_launcher"
+            android:id="@+id/imgGrid"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imgGrid"
+            android:id="@+id/txtGrid"
+            android:text="Nama Kategori"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_centerHorizontal="true"
+            />
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

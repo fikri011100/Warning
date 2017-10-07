@@ -1,0 +1,107 @@
+<android.support.v4.widget.SwipeRefreshLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:id="@+id/refresh"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  tools:context="com.faishalbadri.hijab.FragmentNavigation.HomeFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <ScrollView
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
+        <RelativeLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_marginBottom="10dp"
+          >
+
+            <com.faishalbadri.hijab.First.Slider.SliderLayout
+              android:id="@+id/slider"
+              android:layout_width="match_parent"
+              android:layout_height="220dp"
+              android:layout_alignParentLeft="true"
+              android:background="@color/colorPrimary"
+              android:layout_alignParentStart="true"
+              android:layout_alignParentTop="true"
+              app:layout_scrollFlags="scroll|exitUntilCollapsed"/>
+
+            <TextView
+              style="@style/Subtitle_home_menu"
+              android:layout_below="@+id/slider"
+              android:text="Latest News" />
+
+            <Button
+              android:id="@+id/btnMoreNew"
+              style="@style/btn_more_style"
+              android:layout_below="@+id/slider"
+              android:text="More" />
+
+            <android.support.v7.widget.RecyclerView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_below="@+id/btnMoreNew"
+              android:id="@+id/rvNew"
+              android:nestedScrollingEnabled="false"
+              />
+
+            <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_centerHorizontal="true"
+              android:text="See More The Latest News Here"
+              android:maxLines="2"
+              android:textSize="15sp"
+              android:layout_marginTop="5dp"
+              android:layout_marginBottom="-3dp"
+              android:textStyle="bold"
+              android:id="@+id/txtMore"
+              android:layout_below="@+id/rvNew"/>
+
+
+            <TextView
+              style="@style/Subtitle_home_menu"
+              android:layout_below="@+id/txtMore"
+              android:text="@string/recommend" />
+
+            <Button
+              android:id="@+id/btnMoreTop"
+              style="@style/btn_more_style"
+              android:layout_below="@+id/txtMore"
+              android:text="More" />
+
+            <android.support.v7.widget.RecyclerView
+              android:id="@+id/rvTop"
+              android:layout_below="@+id/btnMoreTop"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:nestedScrollingEnabled="false"
+              android:layout_marginBottom="5dp"/>
+
+            <TextView
+              style="@style/Subtitle_home_menu"
+              android:layout_below="@+id/rvTop"
+              android:text="@string/recently" />
+
+            <Button
+              android:id="@+id/btnMoreHot"
+              style="@style/btn_more_style"
+              android:layout_marginLeft="10dp"
+              android:layout_below="@+id/rvTop"
+              android:text="More" />
+
+            <android.support.v7.widget.RecyclerView
+              android:id="@+id/rvHot"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:nestedScrollingEnabled="false"
+              android:layout_below="@+id/btnMoreHot"
+              android:layout_marginBottom="20dp"/>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</android.support.v4.widget.SwipeRefreshLayout>
