@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.transition.Slide;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,8 +28,7 @@ import com.faishalbadri.hijab.Adapter.AdapterPopuler;
 import com.faishalbadri.hijab.First.Slider.ChildAnimationExample;
 import com.faishalbadri.hijab.First.Slider.SliderLayout;
 import com.faishalbadri.hijab.Helper.Server;
-import com.faishalbadri.hijab.Model.PojoIsiNew;
-import com.faishalbadri.hijab.Model.PojoPopuler;
+import com.faishalbadri.hijab.Model.PojoIsi;
 import com.faishalbadri.hijab.Model.PojoSlider;
 import com.faishalbadri.hijab.R;
 import com.google.gson.Gson;
@@ -138,9 +138,9 @@ public class HomeFragment extends Fragment {
           public void onResponse(String response) {
             try {
               if (String.valueOf(new JSONObject(response).getString("msg"))
-                  .equals("Data Semua Isi Populer")) {
+                  .equals("Data Semua Isi")) {
                 try {
-                  final PojoPopuler populer = gTop.fromJson(response, PojoPopuler.class);
+                  final PojoIsi populer = gTop.fromJson(response, PojoIsi.class);
                   final AdapterPopuler adapterPopuler = new AdapterPopuler(populer.getIsi(),
                       getActivity());
                   rvHot.setAdapter(adapterPopuler);
@@ -150,7 +150,7 @@ public class HomeFragment extends Fragment {
                 }
               } else {
                 Toast.makeText(getActivity().getApplicationContext(), "Database Is Null",
-                    Toast.LENGTH_LONG).show();
+                    Toast.LENGTH_SHORT).show();
               }
             } catch (JSONException e) {
 
@@ -161,7 +161,7 @@ public class HomeFragment extends Fragment {
       @Override
       public void onErrorResponse(VolleyError error) {
         Toast.makeText(getActivity().getApplicationContext(), "Check Your Internet Connection",
-            Toast.LENGTH_LONG).show();
+            Toast.LENGTH_SHORT).show();
       }
     });
     reqHot.add(request);
@@ -175,9 +175,9 @@ public class HomeFragment extends Fragment {
           public void onResponse(String response) {
             try {
               if (String.valueOf(new JSONObject(response).getString("msg"))
-                  .equals("Data Semua Isi Populer")) {
+                  .equals("Data Semua Isi")) {
                 try {
-                  final PojoPopuler populer = gTop.fromJson(response, PojoPopuler.class);
+                  final PojoIsi populer = gTop.fromJson(response, PojoIsi.class);
                   final AdapterPopuler adapterPopuler = new AdapterPopuler(populer.getIsi(),
                       getActivity());
                   rvTop.setAdapter(adapterPopuler);
@@ -187,7 +187,7 @@ public class HomeFragment extends Fragment {
                 }
               } else {
                 Toast.makeText(getActivity().getApplicationContext(), "Database Is Null",
-                    Toast.LENGTH_LONG).show();
+                    Toast.LENGTH_SHORT).show();
               }
             } catch (JSONException e) {
 
@@ -198,7 +198,7 @@ public class HomeFragment extends Fragment {
       @Override
       public void onErrorResponse(VolleyError error) {
         Toast.makeText(getActivity().getApplicationContext(), "Check Your Internet Connection",
-            Toast.LENGTH_LONG).show();
+            Toast.LENGTH_SHORT).show();
       }
     });
     reqTop.add(request);
@@ -214,7 +214,7 @@ public class HomeFragment extends Fragment {
               if (String.valueOf(new JSONObject(response).getString("msg"))
                   .equals("Data Semua Isi")) {
                 try {
-                  final PojoIsiNew isinew = gNew.fromJson(response, PojoIsiNew.class);
+                  final PojoIsi isinew = gNew.fromJson(response, PojoIsi.class);
                   final AdapterIsiNew adapterIsiNew = new AdapterIsiNew(isinew.getIsi(),
                       getActivity());
                   rvNew.setAdapter(adapterIsiNew);
@@ -224,7 +224,7 @@ public class HomeFragment extends Fragment {
                 }
               } else {
                 Toast.makeText(getActivity().getApplicationContext(), "Database Is Null",
-                    Toast.LENGTH_LONG).show();
+                    Toast.LENGTH_SHORT).show();
               }
             } catch (JSONException e) {
 
@@ -235,7 +235,7 @@ public class HomeFragment extends Fragment {
       @Override
       public void onErrorResponse(VolleyError error) {
         Toast.makeText(getActivity().getApplicationContext(), "Check Your Internet Connection",
-            Toast.LENGTH_LONG).show();
+            Toast.LENGTH_SHORT).show();
       }
     });
     reqNew.add(request);
@@ -292,7 +292,7 @@ public class HomeFragment extends Fragment {
                 }
               } else {
                 Toast.makeText(getActivity().getApplicationContext(), "Check Connection",
-                    Toast.LENGTH_LONG).show();
+                    Toast.LENGTH_SHORT).show();
               }
             } catch (JSONException e) {
 
@@ -303,7 +303,7 @@ public class HomeFragment extends Fragment {
       @Override
       public void onErrorResponse(VolleyError error) {
         Toast.makeText(getActivity().getApplicationContext(), "Check Your Internet Connection",
-            Toast.LENGTH_LONG).show();
+            Toast.LENGTH_SHORT).show();
       }
     });
     reqSlider.add(request);
@@ -334,28 +334,48 @@ public class HomeFragment extends Fragment {
     txtMore.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        Toast.makeText(getActivity(), "New", Toast.LENGTH_SHORT).show();
+        MoreFragment moreFragment = new MoreFragment();
+        moreFragment.setEnterTransition(new Slide());
+        getFragmentManager().beginTransaction()
+            .replace(R.id.container, moreFragment)
+            .addToBackStack(null)
+            .commit();
       }
     });
 
     btnMoreNew.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        Toast.makeText(getActivity(), "New", Toast.LENGTH_SHORT).show();
+        MoreFragment moreFragment = new MoreFragment();
+        moreFragment.setEnterTransition(new Slide());
+        getFragmentManager().beginTransaction()
+            .replace(R.id.container, moreFragment)
+            .addToBackStack(null)
+            .commit();
       }
     });
 
     btnMoreHot.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        Toast.makeText(getActivity(), "Hot", Toast.LENGTH_SHORT).show();
+        MoreFragment moreFragment = new MoreFragment();
+        moreFragment.setEnterTransition(new Slide());
+        getFragmentManager().beginTransaction()
+            .replace(R.id.container, moreFragment)
+            .addToBackStack(null)
+            .commit();
       }
     });
 
     btnMoreTop.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        Toast.makeText(getActivity(), "Top", Toast.LENGTH_SHORT).show();
+        MoreFragment moreFragment = new MoreFragment();
+        moreFragment.setEnterTransition(new Slide());
+        getFragmentManager().beginTransaction()
+            .replace(R.id.container, moreFragment)
+            .addToBackStack(null)
+            .commit();
       }
     });
   }

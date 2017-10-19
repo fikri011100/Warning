@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.RecyclerView.Adapter;
-import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +15,8 @@ import com.bumptech.glide.load.DecodeFormat;
 import com.bumptech.glide.request.RequestOptions;
 import com.faishalbadri.hijab.DetailActivity.DetailActivity;
 import com.faishalbadri.hijab.Helper.Server;
-import com.faishalbadri.hijab.Model.PojoIsiNew;
-import com.faishalbadri.hijab.Model.PojoPopuler;
-import com.faishalbadri.hijab.Model.PojoPopuler.IsiBean;
+import com.faishalbadri.hijab.Model.PojoIsi;
+import com.faishalbadri.hijab.Model.PojoIsi.IsiBean;
 import com.faishalbadri.hijab.R;
 import java.util.List;
 
@@ -30,7 +27,7 @@ import java.util.List;
 public class AdapterTopNews extends RecyclerView.Adapter<AdapterTopNews.ViewHolder> {
 
   Activity context;
-  List<PojoPopuler.IsiBean> list_data;
+  List<PojoIsi.IsiBean> list_data;
 
   public AdapterTopNews(List<IsiBean> isi, FragmentActivity activity) {
     this.context = activity;
@@ -46,7 +43,7 @@ public class AdapterTopNews extends RecyclerView.Adapter<AdapterTopNews.ViewHold
 
   @Override
   public void onBindViewHolder(ViewHolder holder, int position) {
-    final PojoPopuler.IsiBean listitem = list_data.get(position);
+    final PojoIsi.IsiBean listitem = list_data.get(position);
     RequestOptions options = new RequestOptions().fitCenter().format(DecodeFormat.PREFER_ARGB_8888)
         .override(150, 150);
     Glide.with(context)

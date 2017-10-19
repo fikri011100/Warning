@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import android.widget.Toast;
 import com.android.volley.Request.Method;
 import com.android.volley.RequestQueue;
@@ -16,7 +17,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.faishalbadri.hijab.Adapter.AdapterTopNews;
+import com.faishalbadri.hijab.Adapter.AdapterAllNews;
 import com.faishalbadri.hijab.Helper.Server;
 import com.faishalbadri.hijab.Model.PojoIsi;
 import com.faishalbadri.hijab.R;
@@ -28,39 +29,40 @@ import org.json.JSONObject;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TopNewsFragment extends Fragment {
+public class MoreFragment extends Fragment {
 
 
-  public TopNewsFragment() {
+  public MoreFragment() {
     // Required empty public constructor
   }
 
-  private View v;
-  private RecyclerView rvTopNews;
-  private RequestQueue reqTopNews;
-  private Gson gsonTopNews;
-  private String url = Server.BASE_URL+"getTbPopuler.php";
+  private RecyclerView rvMore;
+  private RequestQueue reqMore;
+  private Gson gsonMore;
+  private String urlMore = Server.BASE_URL+"getTbIsi.php";
+  View v;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
-    v = inflater.inflate(R.layout.fragment_top_news, container, false);
+    v = inflater.inflate(R.layout.fragment_more, container, false);
     setView();
-    getTopNews();
+    getDataMore();
     return v;
   }
 
-  private void getTopNews() {
-    StringRequest request = new StringRequest(Method.POST, url, new Response.Listener<String>() {
+  private void getDataMore() {
+    StringRequest request = new StringRequest(Method.POST, urlMore, new Response.Listener<String>() {
       @Override
       public void onResponse(String response) {
         try {
           if (String.valueOf(new JSONObject(response).getString("msg")).equals("Data Semua Isi")) {
             try {
               Log.i("Response Data", response);
-              final PojoIsi isi = gsonTopNews.fromJson(response, PojoIsi.class);
-              final AdapterTopNews adapterPopuler = new AdapterTopNews(isi.getIsi(), getActivity());
-              rvTopNews.setAdapter(adapterPopuler);
+              final PojoIsi isi = gsonMore.fromJson(response, PojoIsi.class);
+              final AdapterAllNews adapterPopuler = new AdapterAllNews(isi.getIsi(),
+                  getActivity());
+              rvMore.setAdapter(adapterPopuler);
 
             } catch (Exception e) {
               e.printStackTrace();
@@ -79,17 +81,17 @@ public class TopNewsFragment extends Fragment {
       public void onErrorResponse(VolleyError error) {
       }
     });
-    reqTopNews.add(request);
+    reqMore.add(request);
   }
 
   private void setView() {
-    rvTopNews = (RecyclerView) v.findViewById(R.id.rv_top_news);
-    reqTopNews = Volley.newRequestQueue(getActivity());
+    rvMore = (RecyclerView) v.findViewById(R.id.rv_more);
+    reqMore = Volley.newRequestQueue(getActivity());
     GsonBuilder gbKategori = new GsonBuilder();
-    gsonTopNews = gbKategori.create();
+    gsonMore = gbKategori.create();
     LinearLayoutManager kategori = new LinearLayoutManager(getActivity());
     kategori.setOrientation(LinearLayoutManager.VERTICAL);
-    rvTopNews.setLayoutManager(kategori);
+    rvMore.setLayoutManager(kategori);
   }
 
 }

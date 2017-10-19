@@ -16,7 +16,7 @@ import com.bumptech.glide.load.DecodeFormat;
 import com.bumptech.glide.request.RequestOptions;
 import com.faishalbadri.hijab.DetailActivity.DetailActivity;
 import com.faishalbadri.hijab.Helper.Server;
-import com.faishalbadri.hijab.Model.PojoPopuler;
+import com.faishalbadri.hijab.Model.PojoIsi;
 import com.faishalbadri.hijab.R;
 
 import java.util.List;
@@ -28,9 +28,9 @@ import java.util.List;
 public class AdapterPopuler extends RecyclerView.Adapter<AdapterPopuler.ViewHolder> {
 
   Activity context;
-  List<PojoPopuler.IsiBean> list_data;
+  List<PojoIsi.IsiBean> list_data;
 
-  public AdapterPopuler(List<PojoPopuler.IsiBean> populer, FragmentActivity list_data) {
+  public AdapterPopuler(List<PojoIsi.IsiBean> populer, FragmentActivity list_data) {
     this.context = list_data;
     this.list_data = populer;
   }
@@ -45,7 +45,7 @@ public class AdapterPopuler extends RecyclerView.Adapter<AdapterPopuler.ViewHold
 
   @Override
   public void onBindViewHolder(AdapterPopuler.ViewHolder holder, int position) {
-    final PojoPopuler.IsiBean listitem = list_data.get(position);
+    final PojoIsi.IsiBean listitem = list_data.get(position);
     RequestOptions options = new RequestOptions().fitCenter().format(DecodeFormat.PREFER_ARGB_8888)
         .override(150, 150);
     Glide.with(context)

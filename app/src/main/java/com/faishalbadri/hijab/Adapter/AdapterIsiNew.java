@@ -16,7 +16,7 @@ import com.bumptech.glide.load.DecodeFormat;
 import com.bumptech.glide.request.RequestOptions;
 import com.faishalbadri.hijab.DetailActivity.DetailActivity;
 import com.faishalbadri.hijab.Helper.Server;
-import com.faishalbadri.hijab.Model.PojoIsiNew;
+import com.faishalbadri.hijab.Model.PojoIsi;
 import com.faishalbadri.hijab.R;
 
 import java.util.List;
@@ -28,10 +28,10 @@ import java.util.List;
 public class AdapterIsiNew extends RecyclerView.Adapter<AdapterIsiNew.ViewHolder> {
 
   Activity context;
-  List<PojoIsiNew.IsiBean> list_data;
+  List<PojoIsi.IsiBean> list_data;
 
 
-  public AdapterIsiNew(List<PojoIsiNew.IsiBean> isi, FragmentActivity homeActivity) {
+  public AdapterIsiNew(List<PojoIsi.IsiBean> isi, FragmentActivity homeActivity) {
     this.context = homeActivity;
     this.list_data = isi;
   }
@@ -46,7 +46,7 @@ public class AdapterIsiNew extends RecyclerView.Adapter<AdapterIsiNew.ViewHolder
 
   @Override
   public void onBindViewHolder(AdapterIsiNew.ViewHolder holder, int position) {
-    final PojoIsiNew.IsiBean listitem = list_data.get(position);
+    final PojoIsi.IsiBean listitem = list_data.get(position);
     RequestOptions options = new RequestOptions().fitCenter().format(DecodeFormat.PREFER_ARGB_8888)
         .override(150, 150);
     Glide.with(context)

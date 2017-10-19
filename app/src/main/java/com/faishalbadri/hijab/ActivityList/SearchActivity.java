@@ -14,7 +14,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
 import com.android.volley.Request.Method;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -22,12 +21,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.faishalbadri.hijab.Adapter.AdapterIsiNew;
-import com.faishalbadri.hijab.Adapter.AdapterPopuler;
 import com.faishalbadri.hijab.First.HomeActivity;
 import com.faishalbadri.hijab.Helper.Server;
 import com.faishalbadri.hijab.Model.PojoIsi;
-import com.faishalbadri.hijab.Model.PojoIsiNew;
-import com.faishalbadri.hijab.Model.PojoPopuler;
 import com.faishalbadri.hijab.R;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -63,10 +59,10 @@ public class SearchActivity extends AppCompatActivity {
       public void onResponse(String response) {
         try {
           if (String.valueOf(new JSONObject(response).getString("msg"))
-              .equals("Data Semua Search")) {
+              .equals("Data Semua Isi")) {
             try {
               Log.i("Response Data", response);
-              final PojoIsiNew search = gson.fromJson(response, PojoIsiNew.class);
+              final PojoIsi search = gson.fromJson(response, PojoIsi.class);
               final AdapterIsiNew adapterPopuler = new AdapterIsiNew(search.getIsi(),
                   SearchActivity.this);
               rvSearch.setAdapter(adapterPopuler);

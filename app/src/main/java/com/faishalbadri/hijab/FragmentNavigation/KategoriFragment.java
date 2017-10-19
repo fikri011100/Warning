@@ -20,7 +20,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.faishalbadri.hijab.Adapter.AdapterIsiNew;
 import com.faishalbadri.hijab.Helper.Server;
-import com.faishalbadri.hijab.Model.PojoIsiNew;
+import com.faishalbadri.hijab.Model.PojoIsi;
 import com.faishalbadri.hijab.R;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -66,7 +66,7 @@ public class KategoriFragment extends Fragment {
           if (String.valueOf(new JSONObject(response).getString("msg")).equals("Data Semua Isi")) {
             try {
               Log.i("Response Data", response);
-              final PojoIsiNew search = gKategori.fromJson(response, PojoIsiNew.class);
+              final PojoIsi search = gKategori.fromJson(response, PojoIsi.class);
               final AdapterIsiNew adapterPopuler = new AdapterIsiNew(search.getIsi(),
                   getActivity());
               rvKategoriFragment.setAdapter(adapterPopuler);

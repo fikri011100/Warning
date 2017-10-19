@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.Toast;
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request.Method;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -19,15 +18,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.faishalbadri.hijab.Adapter.AdapterAllNews;
-import com.faishalbadri.hijab.Adapter.AdapterIsiNew;
 import com.faishalbadri.hijab.Helper.Server;
 import com.faishalbadri.hijab.Model.PojoIsi;
-import com.faishalbadri.hijab.Model.PojoIsiNew;
 import com.faishalbadri.hijab.R;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import java.util.HashMap;
-import java.util.Map;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -50,7 +45,7 @@ public class AllNewsFragment extends Fragment {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
-    View v = inflater.inflate(R.layout.fragment_all_news, container, false);
+    v = inflater.inflate(R.layout.fragment_all_news, container, false);
     setView();
     getAllNews();
     return v;

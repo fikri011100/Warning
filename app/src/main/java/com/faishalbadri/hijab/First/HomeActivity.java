@@ -222,7 +222,7 @@ public class HomeActivity extends AppCompatActivity
     inflater.inflate(R.menu.menu_search, menu);
     searchItem = menu.findItem(R.id.search);
     searchView = (SearchView) searchItem.getActionView();
-    searchView.setQueryHint("Judul / Kategori / penulis");
+    searchView.setQueryHint("Cari ...");
     searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
       @Override
       public boolean onQueryTextSubmit(String query) {

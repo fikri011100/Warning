@@ -17,7 +17,6 @@ import com.faishalbadri.hijab.DetailActivity.DetailActivity;
 import com.faishalbadri.hijab.Helper.Server;
 import com.faishalbadri.hijab.Model.PojoIsi;
 import com.faishalbadri.hijab.Model.PojoIsi.IsiBean;
-import com.faishalbadri.hijab.Model.PojoIsiNew;
 import com.faishalbadri.hijab.R;
 import java.util.List;
 
