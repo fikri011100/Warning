@@ -36,8 +36,10 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DecodeFormat;
 import com.bumptech.glide.request.RequestOptions;
 import com.faishalbadri.hijab.ActivityList.ListVideoActivity;
+import com.faishalbadri.hijab.FragmentNavigation.AllNewsFragment;
 import com.faishalbadri.hijab.FragmentNavigation.HomeFragment;
 import com.faishalbadri.hijab.FragmentNavigation.KategoriFragment;
+import com.faishalbadri.hijab.FragmentNavigation.TopNewsFragment;
 import com.faishalbadri.hijab.Helper.Server;
 import com.faishalbadri.hijab.Helper.SessionManager;
 
@@ -260,9 +262,21 @@ public class HomeActivity extends AppCompatActivity
     } else if (id == R.id.pinkyhijab) {
 
     } else if (id == R.id.allnews) {
-
+      AllNewsFragment allNewsFragment = new AllNewsFragment();
+      allNewsFragment.setArguments(getIntent().getExtras());
+      getSupportFragmentManager().beginTransaction().replace(R.id.container, allNewsFragment, "AllNewsFragment")
+          .commit();
+      getSupportFragmentManager().popBackStack();
+      setTitle("All News");
+      searchView.setVisibility(View.VISIBLE);
     } else if (id == R.id.topnews) {
-
+      TopNewsFragment home = new TopNewsFragment();
+      home.setArguments(getIntent().getExtras());
+      getSupportFragmentManager().beginTransaction().replace(R.id.container, home, "TopNewsFragment")
+          .commit();
+      getSupportFragmentManager().popBackStack();
+      setTitle("Top News");
+      searchView.setVisibility(View.VISIBLE);
     } else if (id == R.id.video) {
       startActivity(new Intent(getApplicationContext(), ListVideoActivity.class));
     } else if (id == R.id.event) {

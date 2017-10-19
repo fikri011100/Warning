@@ -97,7 +97,7 @@ public class ListVideoActivity extends AppCompatActivity {
               } else {
                 Toast
                     .makeText(getApplicationContext().getApplicationContext(), "Database Is Null",
-                        Toast.LENGTH_LONG).show();
+                        Toast.LENGTH_SHORT).show();
               }
             } catch (JSONException e) {
 
@@ -108,7 +108,7 @@ public class ListVideoActivity extends AppCompatActivity {
       @Override
       public void onErrorResponse(VolleyError error) {
         Toast.makeText(getApplicationContext().getApplicationContext(),
-            "Check Your Internet Connection", Toast.LENGTH_LONG).show();
+            "Check Your Internet Connection", Toast.LENGTH_SHORT).show();
       }
     });
     reqListVideo.add(request);
