@@ -15,7 +15,7 @@
     android:layout_marginTop="80dp"
     android:layout_gravity="center_horizontal"
     android:fontFamily="cursive"
-    android:text="Login User"
+    android:text="Pinky Hijab"
     android:textColor="#FCE4EC"
     android:textSize="40dp" />
 

@@ -65,7 +65,7 @@ public class HomeActivity extends AppCompatActivity
   MenuInflater inflater;
   MenuItem searchItem;
   SearchView searchView;
-  String key, emailUser, id, imgUser, username;
+  String key, emailUser, idUser, imgUser, username;
   SessionManager sesi;
   AdView adHome;
   private ConstraintLayout linearLayout;
@@ -137,7 +137,7 @@ public class HomeActivity extends AppCompatActivity
                     map.put("id_user", json.getString("id_user"));
                     map.put("username", json.getString("username"));
                     map.put("img_user", json.getString("img_user"));
-                    id = json.getString("id_user");
+                    idUser = json.getString("id_user");
                     imgUser = json.getString("img_user");
                     username = json.getString("username");
                     RequestOptions options = new RequestOptions()
@@ -189,7 +189,7 @@ public class HomeActivity extends AppCompatActivity
     linearLayout.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
-        startActivity(new Intent(getApplicationContext(), ProfileActivity.class).putExtra("id", id)
+        startActivity(new Intent(getApplicationContext(), ProfileActivity.class).putExtra("id", idUser)
             .putExtra("username", username).putExtra("email", email)
             .putExtra("imageUser", imgUser));
         finish();
@@ -285,8 +285,10 @@ public class HomeActivity extends AppCompatActivity
     } else if (id == R.id.ebook) {
 
     } else if (id == R.id.vote) {
+      Bundle bundle = new Bundle();
+      bundle.putString("id", idUser);
       VotingFragment voting = new VotingFragment();
-      voting.setArguments(getIntent().getExtras());
+      voting.setArguments(bundle);
       getSupportFragmentManager().beginTransaction().replace(R.id.container, voting, "VotingFragment")
           .commit();
       getSupportFragmentManager().popBackStack();
