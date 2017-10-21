@@ -107,5 +107,10 @@
     </string>
   <string name="title_activity_register">RegisterActivity</string>
   <string name="title_activity_detail_video">DetailVideoActivity</string>
-
+  <string name="next" translatable="false">NEXT</string>
+  <string name="skip" translatable="false">SKIP</string>
+  <string name="start" translatable="false">GOT IT</string>
+  <string name="intro1">There Are Many Locations You Can Use To Learn. For example Schools, Universities, Libraries and Private Place</string>
+  <string name="intro3" translatable="false">Lightweight And Easy To Use</string>
+  <string name="intro2">Finder Is An Application To Help Students Around Jakarta To Find A Convenient Learning Place</string>
 </resources>

@@ -3,4 +3,40 @@
     <color name="colorPrimary">#FF4081</color>
     <color name="colorPrimaryDark">#F50057</color>
     <color name="colorAccent">#FF80AB</color>
+
+    <!-- Screens background color-->
+    <color name="bg_screen1">#f64c73</color>
+    <color name="bg_screen2">#20d2bb</color>
+    <color name="bg_screen3">#3395ff</color>
+    <color name="bg_screen4">#c873f4</color>
+
+    <!-- dots inactive colors -->
+    <color name="dot_dark_screen1">#fff</color>
+    <color name="dot_dark_screen2">#fff</color>
+    <color name="dot_dark_screen3">#fff</color>
+    <color name="dot_dark_screen4">#fff</color>
+
+    <!-- dots active colors -->
+    <color name="dot_light_screen1">#aaa</color>
+    <color name="dot_light_screen2">#aaa</color>
+    <color name="dot_light_screen3">#aaa</color>
+    <color name="dot_light_screen4">#aaa</color>
+
+    <array name="array_dot_active">
+        <item>@color/dot_light_screen1</item>
+        <item>@color/dot_light_screen2</item>
+        <item>@color/dot_light_screen3</item>
+        <item>@color/dot_light_screen4</item>
+    </array>
+
+    <array name="array_dot_inactive">
+        <item>@color/dot_dark_screen1</item>
+        <item>@color/dot_dark_screen2</item>
+        <item>@color/dot_dark_screen3</item>
+        <item>@color/dot_dark_screen4</item>
+    </array>
+
+    <color name="listsub1">#7b7b7b</color>
+    <color name="listsub2">#9e9e9e</color>
+    <color name="listtext">#585858</color>
 </resources>

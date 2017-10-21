@@ -12,7 +12,6 @@
     android:roundIcon="@mipmap/ic_launcher_round"
     android:supportsRtl="true"
     android:theme="@style/AppTheme">
-
     <meta-data
       android:name="com.google.android.gms.version"
       android:value="@integer/google_play_services_version" />
@@ -22,7 +21,6 @@
       android:name=".First.HomeActivity"
       android:screenOrientation="portrait"
       android:theme="@style/AppTheme.NoActionBar" />
-
     <activity
       android:name=".ActivityList.SearchActivity"
       android:screenOrientation="portrait" />
@@ -31,22 +29,18 @@
       android:name=".DetailActivity.DetailActivity"
       android:screenOrientation="portrait"
       android:theme="@style/AppTheme.NoActionBar" />
-
     <activity
       android:name=".First.LoginAndRegister.RegisterActivity"
       android:screenOrientation="portrait"
       android:theme="@style/AppTheme.NoActionBar" />
-
     <activity
       android:name=".First.LoginAndRegister.LoginActivity"
       android:screenOrientation="portrait"
       android:theme="@style/AppTheme.NoActionBar" />
-
     <activity
       android:name=".First.Splash.SplashActivity"
       android:screenOrientation="portrait"
       android:theme="@style/AppTheme.NoActionBar">
-
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
 
@@ -69,6 +63,7 @@
     <activity
       android:name=".ProfileActivity"
       android:screenOrientation="portrait" />
+    <activity android:name=".First.Intro.IntroActivity"></activity>
   </application>
 
 </manifest>
