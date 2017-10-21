@@ -40,6 +40,7 @@ import com.faishalbadri.hijab.FragmentNavigation.AllNewsFragment;
 import com.faishalbadri.hijab.FragmentNavigation.HomeFragment;
 import com.faishalbadri.hijab.FragmentNavigation.KategoriFragment;
 import com.faishalbadri.hijab.FragmentNavigation.TopNewsFragment;
+import com.faishalbadri.hijab.FragmentVoting.VotingFragment;
 import com.faishalbadri.hijab.Helper.Server;
 import com.faishalbadri.hijab.Helper.SessionManager;
 
@@ -284,7 +285,12 @@ public class HomeActivity extends AppCompatActivity
     } else if (id == R.id.ebook) {
 
     } else if (id == R.id.vote) {
-
+      VotingFragment voting = new VotingFragment();
+      voting.setArguments(getIntent().getExtras());
+      getSupportFragmentManager().beginTransaction().replace(R.id.container, voting, "VotingFragment")
+          .commit();
+      getSupportFragmentManager().popBackStack();
+      setTitle("Vote");
     } else if (id == R.id.muslimahinspiratif) {
       bundleKategori.putString("id", "1");
       setTitle("Muslimah Inspiratif");
