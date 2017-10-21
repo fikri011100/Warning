@@ -331,13 +331,14 @@ public class HomeFragment extends Fragment {
 
   private void setOnClickButton() {
 
+    final AllNewsFragment allNewsFragment = new AllNewsFragment();
+
     txtMore.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        MoreFragment moreFragment = new MoreFragment();
-        moreFragment.setEnterTransition(new Slide());
+//        allNewsFragment.setEnterTransition(new Slide());
         getFragmentManager().beginTransaction()
-            .replace(R.id.container, moreFragment)
+            .replace(R.id.container, allNewsFragment)
             .addToBackStack(null)
             .commit();
       }
@@ -346,10 +347,9 @@ public class HomeFragment extends Fragment {
     btnMoreNew.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        MoreFragment moreFragment = new MoreFragment();
-        moreFragment.setEnterTransition(new Slide());
+//        allNewsFragment.setEnterTransition(new Slide());
         getFragmentManager().beginTransaction()
-            .replace(R.id.container, moreFragment)
+            .replace(R.id.container, allNewsFragment)
             .addToBackStack(null)
             .commit();
       }
@@ -358,10 +358,9 @@ public class HomeFragment extends Fragment {
     btnMoreHot.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        MoreFragment moreFragment = new MoreFragment();
-        moreFragment.setEnterTransition(new Slide());
+//        moreFragment.setEnterTransition(new Slide());
         getFragmentManager().beginTransaction()
-            .replace(R.id.container, moreFragment)
+            .replace(R.id.container, allNewsFragment)
             .addToBackStack(null)
             .commit();
       }
@@ -370,10 +369,9 @@ public class HomeFragment extends Fragment {
     btnMoreTop.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        MoreFragment moreFragment = new MoreFragment();
-        moreFragment.setEnterTransition(new Slide());
+//        moreFragment.setEnterTransition(new Slide());
         getFragmentManager().beginTransaction()
-            .replace(R.id.container, moreFragment)
+            .replace(R.id.container, allNewsFragment)
             .addToBackStack(null)
             .commit();
       }

@@ -4,8 +4,10 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Warning.iml" filepath="$PROJECT_DIR$/Warning.iml" />
       <module fileurl="file://$PROJECT_DIR$/Warning.iml" filepath="$PROJECT_DIR$/Warning.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Warning.iml" filepath="$PROJECT_DIR$/Warning.iml" />
       <module fileurl="file://$PROJECT_DIR$/Warning-master.iml" filepath="$PROJECT_DIR$/Warning-master.iml" />
       <module fileurl="file://$PROJECT_DIR$/Warning-master-master.iml" filepath="$PROJECT_DIR$/Warning-master-master.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>

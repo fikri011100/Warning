@@ -43,10 +43,9 @@ public class VotingFragment extends Fragment {
   }
 
   private String url = Server.BASE_URL+"getTbVoting.php";
-  private String urlSession = Server.BASE_URL+"getTbSession.php";
-  private Gson gsonVoting,gsonSession;
+  private Gson gsonVoting;
   private RecyclerView rvVoting;
-  private RequestQueue reqVoting,reqSession;
+  private RequestQueue reqVoting;
   private View v;
   String id_user;
 
@@ -55,46 +54,10 @@ public class VotingFragment extends Fragment {
       Bundle savedInstanceState) {
     v = inflater.inflate(R.layout.fragment_voting, container, false);
     setView();
-    getSession();
     Bundle bundle = getArguments();
     id_user = bundle.getString("id");
-    Toast.makeText(getActivity(), id_user, Toast.LENGTH_SHORT).show();
+    getVote();
     return v;
-  }
-
-  private void getSession() {
-    StringRequest request = new StringRequest(Method.POST, urlSession, new Response.Listener<String>() {
-      @Override
-      public void onResponse(String response) {
-        try {
-          if (String.valueOf(new JSONObject(response).getString("msg")).equals("Data Semua Session")) {
-            try {
-              Log.i("Response Data", response);
-              getVote();
-            } catch (Exception e) {
-              e.printStackTrace();
-            }
-          } else {
-            getVote();
-          }
-        } catch (JSONException e) {
-
-        }
-
-      }
-    }, new Response.ErrorListener() {
-      @Override
-      public void onErrorResponse(VolleyError error) {
-      }
-    }){
-      @Override
-      protected Map<String, String> getParams() throws AuthFailureError {
-        Map<String, String> params = new HashMap<String, String>();
-        params.put("id_user", id_user);
-        return params;
-      }
-    };
-    reqVoting.add(request);
   }
 
   private void getVote() {
@@ -106,16 +69,14 @@ public class VotingFragment extends Fragment {
             try {
               Log.i("Response Data", response);
               final PojoVoting voting = gsonVoting.fromJson(response, PojoVoting.class);
-              PojoSession session = gsonSession.fromJson(response, PojoSession.class);
-              final AdapterVoting adapterVoting = new AdapterVoting(getActivity(),voting.getVoting(),session.getSession(),id_user);
+              final AdapterVoting adapterVoting = new AdapterVoting(getActivity(),voting.getVoting(),id_user);
               rvVoting.setAdapter(adapterVoting);
 
             } catch (Exception e) {
               e.printStackTrace();
             }
           } else {
-            Toast.makeText(getActivity().getApplicationContext(), "Database Is Null",
-                Toast.LENGTH_SHORT).show();
+
           }
         } catch (JSONException e) {
 
@@ -135,9 +96,6 @@ public class VotingFragment extends Fragment {
     reqVoting = Volley.newRequestQueue(getActivity());
     GsonBuilder gbKategori = new GsonBuilder();
     gsonVoting = gbKategori.create();
-    reqSession = Volley.newRequestQueue(getActivity());
-    GsonBuilder gbSession = new GsonBuilder();
-    gsonSession = gbSession.create();
     GridLayoutManager voting = new GridLayoutManager(getActivity(),3);
     voting.setOrientation(GridLayoutManager.VERTICAL);
     rvVoting.setLayoutManager(voting);

@@ -7,8 +7,10 @@
   tools:context="com.faishalbadri.hijab.FragmentVoting.FragmentVotingDialog">
 
   <RelativeLayout
+    android:id="@+id/invisible_relative_dialog_fragment"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:visibility="invisible">
 
     <android.support.constraint.ConstraintLayout
       android:layout_width="match_parent"

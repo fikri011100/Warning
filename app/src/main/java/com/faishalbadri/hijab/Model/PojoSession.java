@@ -54,7 +54,7 @@ public class PojoSession {
     private String id_session;
     private String id_user;
     private String id_voting;
-    private Double session_status;
+    private String session_status;
 
     public String getId_session() {
       return id_session;
@@ -80,11 +80,11 @@ public class PojoSession {
       this.id_voting = id_voting;
     }
 
-    public Double getSession_status() {
+    public String getSession_status() {
       return session_status;
     }
 
-    public void setSession_status(Double session_status) {
+    public void setSession_status(String session_status) {
       this.session_status = session_status;
     }
   }

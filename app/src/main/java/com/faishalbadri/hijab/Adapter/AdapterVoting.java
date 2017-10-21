@@ -32,15 +32,12 @@ public class AdapterVoting extends RecyclerView.Adapter<AdapterVoting.ViewHolder
 
   Activity context;
   List<PojoVoting.VotingBean> list_data;
-  List<PojoSession.SessionBean> list_session;
   String idUser;
 
   public AdapterVoting(FragmentActivity context,
-      List<VotingBean> list_data,
-      List<SessionBean> list_session, String idUser) {
+      List<VotingBean> list_data, String idUser) {
     this.context = context;
     this.list_data = list_data;
-    this.list_session = list_session;
     this.idUser = idUser;
   }
 
@@ -54,7 +51,6 @@ public class AdapterVoting extends RecyclerView.Adapter<AdapterVoting.ViewHolder
   @Override
   public void onBindViewHolder(ViewHolder holder, int position) {
     final PojoVoting.VotingBean listitem = list_data.get(position);
-    final PojoSession.SessionBean listsession = list_session.get(position);
     RequestOptions options = new RequestOptions().fitCenter().format(DecodeFormat.PREFER_ARGB_8888)
         .override(150, 150);
     Glide.with(context)
@@ -65,14 +61,10 @@ public class AdapterVoting extends RecyclerView.Adapter<AdapterVoting.ViewHolder
       @Override
       public void onClick(View v) {
         Bundle bundle = new Bundle();
-        bundle.putString("id",listitem.getId_voting());
+        bundle.putString("id_voting",listitem.getId_voting());
         bundle.putString("nama",listitem.getVoting_nickname());
         bundle.putString("img",listitem.getVoting_img());
-        bundle.putDouble("like",listitem.getVoting_like());
         bundle.putString("id_user",idUser);
-        bundle.putString("id_session",listsession.getId_session());
-        bundle.putString("id_voting",listsession.getId_voting());
-        bundle.putDouble("session_status",listsession.getSession_status());
         FragmentActivity activity = (FragmentActivity) (context);
         android.support.v4.app.FragmentManager fm = activity.getSupportFragmentManager();
         FragmentVotingDialog alert = new FragmentVotingDialog();
@@ -84,9 +76,7 @@ public class AdapterVoting extends RecyclerView.Adapter<AdapterVoting.ViewHolder
 
   @Override
   public int getItemCount() {
-    list_data.size();
-    list_session.size();
-    return getItemCount();
+    return list_data.size();
   }
 
   public class ViewHolder extends RecyclerView.ViewHolder {
