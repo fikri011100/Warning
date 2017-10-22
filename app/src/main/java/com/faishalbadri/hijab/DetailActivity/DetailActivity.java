@@ -125,8 +125,7 @@ public class DetailActivity extends AppCompatActivity {
                   e.printStackTrace();
                 }
               } else {
-                Toast.makeText(getApplicationContext().getApplicationContext(), "Database Is Null",
-                    Toast.LENGTH_LONG).show();
+
               }
             } catch (JSONException e) {
 

@@ -94,6 +94,7 @@ public class AdapterListVideo extends RecyclerView.Adapter<RecyclerView.ViewHold
         a.putExtra("video", listitem.getVideo());
         a.putExtra("duration", listitem.getDuration());
         v.getContext().startActivity(a);
+        ((Activity)context).overridePendingTransition(R.anim.slide_from_right,R.anim.slide_from_right);
       }
     });
   }

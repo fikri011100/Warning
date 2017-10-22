@@ -1,5 +1,6 @@
 package com.faishalbadri.hijab.Adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.CardView;
@@ -64,6 +65,7 @@ public class AdapterMoreNewsDetail extends RecyclerView.Adapter<AdapterMoreNewsD
         a.putExtra("keterangan", listitem.getIsi_keterangan());
         a.putExtra("tglUpload", listitem.getIsi_tgl_upload());
         v.getContext().startActivity(a);
+        ((Activity)context).overridePendingTransition(R.anim.slide_from_right,R.anim.slide_from_right);
       }
     });
   }

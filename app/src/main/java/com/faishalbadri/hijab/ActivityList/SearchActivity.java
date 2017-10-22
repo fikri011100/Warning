@@ -71,7 +71,7 @@ public class SearchActivity extends AppCompatActivity {
               e.printStackTrace();
             }
           } else {
-            Toast.makeText(getApplicationContext(), "Database Is Null", Toast.LENGTH_LONG).show();
+
           }
         } catch (JSONException e) {
 

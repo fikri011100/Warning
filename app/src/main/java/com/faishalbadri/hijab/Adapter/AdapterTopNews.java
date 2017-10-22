@@ -63,6 +63,7 @@ public class AdapterTopNews extends RecyclerView.Adapter<AdapterTopNews.ViewHold
         a.putExtra("keterangan", listitem.getIsi_keterangan());
         a.putExtra("tglUpload", listitem.getIsi_tgl_upload());
         v.getContext().startActivity(a);
+        ((Activity)context).overridePendingTransition(R.anim.slide_from_right,R.anim.slide_from_right);
       }
     });
   }

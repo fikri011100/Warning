@@ -13,7 +13,10 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.transition.ChangeBounds;
+import android.transition.Slide;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -76,6 +79,7 @@ public class HomeActivity extends AppCompatActivity
   Gson gsonLogin;
   String URLLogin = Server.BASE_URL + "getUser.php";
   Bundle bundleKategori;
+  Slide slide;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -155,9 +159,7 @@ public class HomeActivity extends AppCompatActivity
                   e.printStackTrace();
                 }
               } else {
-                Toast
-                    .makeText(getApplicationContext().getApplicationContext(), "Database Is Null",
-                        Toast.LENGTH_LONG).show();
+
               }
             } catch (JSONException e) {
 
@@ -280,6 +282,8 @@ public class HomeActivity extends AppCompatActivity
       searchView.setVisibility(View.VISIBLE);
     } else if (id == R.id.video) {
       startActivity(new Intent(getApplicationContext(), ListVideoActivity.class));
+      this.overridePendingTransition(R.anim.slide_from_right,R.anim.slide_from_right);
+
     } else if (id == R.id.event) {
 
     } else if (id == R.id.ebook) {
@@ -391,8 +395,10 @@ public class HomeActivity extends AppCompatActivity
       kategoriFragment();
     } else if (id == R.id.kirimartikelmu) {
       startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+      this.overridePendingTransition(R.anim.slide_from_right,R.anim.slide_from_right);
     } else if (id == R.id.kritiksaran) {
       startActivity(new Intent(getApplicationContext(), KritikSaran.class));
+      this.overridePendingTransition(R.anim.slide_from_right,R.anim.slide_from_right);
     } else if (id == R.id.about) {
 
     } else if (id == R.id.share) {

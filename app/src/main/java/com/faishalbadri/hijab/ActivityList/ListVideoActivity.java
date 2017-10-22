@@ -93,9 +93,7 @@ public class ListVideoActivity extends AppCompatActivity {
                   e.printStackTrace();
                 }
               } else {
-                Toast
-                    .makeText(getApplicationContext().getApplicationContext(), "Database Is Null",
-                        Toast.LENGTH_SHORT).show();
+
               }
             } catch (JSONException e) {
 

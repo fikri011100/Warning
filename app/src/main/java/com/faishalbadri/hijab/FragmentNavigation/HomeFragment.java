@@ -149,8 +149,7 @@ public class HomeFragment extends Fragment {
                   e.printStackTrace();
                 }
               } else {
-                Toast.makeText(getActivity().getApplicationContext(), "Database Is Null",
-                    Toast.LENGTH_SHORT).show();
+
               }
             } catch (JSONException e) {
 
@@ -186,8 +185,7 @@ public class HomeFragment extends Fragment {
                   e.printStackTrace();
                 }
               } else {
-                Toast.makeText(getActivity().getApplicationContext(), "Database Is Null",
-                    Toast.LENGTH_SHORT).show();
+
               }
             } catch (JSONException e) {
 
@@ -223,8 +221,7 @@ public class HomeFragment extends Fragment {
                   e.printStackTrace();
                 }
               } else {
-                Toast.makeText(getActivity().getApplicationContext(), "Database Is Null",
-                    Toast.LENGTH_SHORT).show();
+
               }
             } catch (JSONException e) {
 
@@ -291,8 +288,7 @@ public class HomeFragment extends Fragment {
                   e.printStackTrace();
                 }
               } else {
-                Toast.makeText(getActivity().getApplicationContext(), "Check Connection",
-                    Toast.LENGTH_SHORT).show();
+
               }
             } catch (JSONException e) {
 
@@ -336,8 +332,6 @@ public class HomeFragment extends Fragment {
     txtMore.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-//        allNewsFragment.setEnterTransition(new Slide());
-        allNewsFragment.getActivity().overridePendingTransition(R.anim.slide_from_right,R.anim.slide_from_right);
         getFragmentManager().beginTransaction()
             .replace(R.id.container, allNewsFragment)
             .addToBackStack(null)
@@ -348,8 +342,6 @@ public class HomeFragment extends Fragment {
     btnMoreNew.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-//        allNewsFragment.setEnterTransition(new Slide());
-        allNewsFragment.getActivity().overridePendingTransition(R.anim.slide_from_right,R.anim.slide_from_right);
         getFragmentManager().beginTransaction()
             .replace(R.id.container, allNewsFragment)
             .addToBackStack(null)
@@ -360,8 +352,6 @@ public class HomeFragment extends Fragment {
     btnMoreHot.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-//        moreFragment.setEnterTransition(new Slide());
-        allNewsFragment.getActivity().overridePendingTransition(R.anim.slide_from_right,R.anim.slide_from_right);
         getFragmentManager().beginTransaction()
             .replace(R.id.container, allNewsFragment)
             .addToBackStack(null)
@@ -372,8 +362,6 @@ public class HomeFragment extends Fragment {
     btnMoreTop.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-//        moreFragment.setEnterTransition(new Slide());
-        allNewsFragment.getActivity().overridePendingTransition(R.anim.slide_from_right,R.anim.slide_from_right);
         getFragmentManager().beginTransaction()
             .replace(R.id.container, allNewsFragment)
             .addToBackStack(null)

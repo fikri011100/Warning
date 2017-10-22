@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -56,13 +57,14 @@ public class FragmentVotingDialog extends DialogFragment {
   RelativeLayout relativeLayout;
   private RequestQueue reqLike,reqUnlike,reqSession;
   Gson gsonSession;
+  ProgressBar progress;
 
 
   public FragmentVotingDialog() {
     // Required empty public constructor
   }
 
-  String  nama, img, id_user,id_voting,id_session,status_session, isi, isi2;
+  String  nama, img, id_user,id_voting,id_session,status_session, isi;
   private String urlLike = Server.BASE_URL+"like.php";
   private String urlUnlike = Server.BASE_URL+"unlike.php";
   private String urlSession = Server.BASE_URL+"getTbSession.php";
@@ -89,8 +91,8 @@ public class FragmentVotingDialog extends DialogFragment {
         .load(Server.BASE_IMG + img)
         .apply(options)
         .into(imgVoting);
-    isi = "Dapatkan aplikasi ini di Google Playstore. \"LINK\" \\n Dan jangan lupa untuk mensupport ";
-    isi2 = " sebagai pemenang \"NAMA AWARDING\" di tahun 2017";
+    isi = "Dapatkan aplikasi ini di Google Playstore. \"LINK\" \n Dan jangan lupa untuk mensupport " + nama + " sebagai pemenang \"NAMA AWARDING\" di tahun 2017" ;
+
   }
 
   private void getSession() {
@@ -111,12 +113,14 @@ public class FragmentVotingDialog extends DialogFragment {
                 btnAfterLikeVoting.setVisibility(View.VISIBLE);
               }
               relativeLayout.setVisibility(View.VISIBLE);
+              progress.setVisibility(View.GONE);
               } catch (Exception e) {
               e.printStackTrace();
             }
           } else {
             Log.i("Response Data", response);
             relativeLayout.setVisibility(View.VISIBLE);
+            progress.setVisibility(View.GONE);
           }
         } catch (JSONException e) {
 
@@ -126,7 +130,7 @@ public class FragmentVotingDialog extends DialogFragment {
     }, new Response.ErrorListener() {
       @Override
       public void onErrorResponse(VolleyError error) {
-
+        progress.setVisibility(View.GONE);
       }
     }) {
       @Override
@@ -149,6 +153,7 @@ public class FragmentVotingDialog extends DialogFragment {
   }
 
   private void initView() {
+    progress = (ProgressBar)v.findViewById(R.id.progress);
     relativeLayout = (RelativeLayout) v.findViewById(R.id.invisible_relative_dialog_fragment);
     imgVoting = (ImageView) v.findViewById(R.id.img_voting);
     btnBeforeLikeVoting = (ImageView) v.findViewById(R.id.btn_before_like_voting);
@@ -166,7 +171,7 @@ public class FragmentVotingDialog extends DialogFragment {
     Intent share = new Intent(Intent.ACTION_SEND);
     share.setType("text/plain");
     share.putExtra(Intent.EXTRA_SUBJECT,"PINKY HIJAB");
-    share.putExtra(Intent.EXTRA_TEXT,isi+nama+isi2);
+    share.putExtra(Intent.EXTRA_TEXT,isi);
 
     startActivity(Intent.createChooser(share,"Bagikan dengan"));
   }
@@ -226,6 +231,8 @@ public class FragmentVotingDialog extends DialogFragment {
             } catch (Exception e) {
               e.printStackTrace();
             }
+          }else {
+
           }
         } catch (JSONException e) {
 
@@ -261,6 +268,8 @@ public class FragmentVotingDialog extends DialogFragment {
             } catch (Exception e) {
               e.printStackTrace();
             }
+          }else{
+
           }
         } catch (JSONException e) {
 

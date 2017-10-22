@@ -75,8 +75,7 @@ public class KategoriFragment extends Fragment {
               e.printStackTrace();
             }
           } else {
-            Toast.makeText(getActivity().getApplicationContext(), "Database Is Null",
-                Toast.LENGTH_SHORT).show();
+
           }
         } catch (JSONException e) {
 
@@ -86,7 +85,7 @@ public class KategoriFragment extends Fragment {
     }, new Response.ErrorListener() {
       @Override
       public void onErrorResponse(VolleyError error) {
-//        Toast.makeText(getActivity().getApplicationContext(),"Check Your Internet Connection And Refresh",Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity().getApplicationContext(),"Check Your Internet Connection And Refresh",Toast.LENGTH_LONG).show();
       }
     }) {
       @Override

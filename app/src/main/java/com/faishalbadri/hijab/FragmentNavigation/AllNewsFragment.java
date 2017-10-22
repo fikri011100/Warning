@@ -68,8 +68,7 @@ public class AllNewsFragment extends Fragment {
               e.printStackTrace();
             }
           } else {
-            Toast.makeText(getActivity().getApplicationContext(), "Database Is Null",
-                Toast.LENGTH_SHORT).show();
+
           }
         } catch (JSONException e) {
 

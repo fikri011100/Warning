@@ -65,7 +65,7 @@ public class AdapterVoting extends RecyclerView.Adapter<AdapterVoting.ViewHolder
         android.support.v4.app.FragmentManager fm = activity.getSupportFragmentManager();
         FragmentVotingDialog alert = new FragmentVotingDialog();
         alert.setArguments(bundle);
-        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) context, v, "img_voting");
+//        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) context, v, "img_voting");
         alert.show(fm,"");
       }
     });
