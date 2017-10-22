@@ -3,6 +3,7 @@ package com.faishalbadri.hijab.FragmentVoting;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
@@ -61,7 +62,7 @@ public class FragmentVotingDialog extends DialogFragment {
     // Required empty public constructor
   }
 
-  String  nama, img, id_user,id_voting,id_session,status_session;
+  String  nama, img, id_user,id_voting,id_session,status_session, isi, isi2;
   private String urlLike = Server.BASE_URL+"like.php";
   private String urlUnlike = Server.BASE_URL+"unlike.php";
   private String urlSession = Server.BASE_URL+"getTbSession.php";
@@ -88,6 +89,8 @@ public class FragmentVotingDialog extends DialogFragment {
         .load(Server.BASE_IMG + img)
         .apply(options)
         .into(imgVoting);
+    isi = "Dapatkan aplikasi ini di Google Playstore. \"LINK\" \\n Dan jangan lupa untuk mensupport ";
+    isi2 = " sebagai pemenang \"NAMA AWARDING\" di tahun 2017";
   }
 
   private void getSession() {
@@ -159,6 +162,15 @@ public class FragmentVotingDialog extends DialogFragment {
     gsonSession = gbSession.create();
   }
 
+  private void IntentShare() {
+    Intent share = new Intent(Intent.ACTION_SEND);
+    share.setType("text/plain");
+    share.putExtra(Intent.EXTRA_SUBJECT,"PINKY HIJAB");
+    share.putExtra(Intent.EXTRA_TEXT,isi+nama+isi2);
+
+    startActivity(Intent.createChooser(share,"Bagikan dengan"));
+  }
+
   private void onClickMethod() {
     btnBeforeLikeVoting.setOnClickListener(new OnClickListener() {
       @Override
@@ -174,6 +186,12 @@ public class FragmentVotingDialog extends DialogFragment {
         unlikeOnClick();
         btnBeforeLikeVoting.setVisibility(View.VISIBLE);
         btnAfterLikeVoting.setVisibility(View.INVISIBLE);
+      }
+    });
+    btnShareVoting.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        IntentShare();
       }
     });
   }

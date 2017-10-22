@@ -337,6 +337,7 @@ public class HomeFragment extends Fragment {
       @Override
       public void onClick(View view) {
 //        allNewsFragment.setEnterTransition(new Slide());
+        allNewsFragment.getActivity().overridePendingTransition(R.anim.slide_from_right,R.anim.slide_from_right);
         getFragmentManager().beginTransaction()
             .replace(R.id.container, allNewsFragment)
             .addToBackStack(null)
@@ -348,6 +349,7 @@ public class HomeFragment extends Fragment {
       @Override
       public void onClick(View view) {
 //        allNewsFragment.setEnterTransition(new Slide());
+        allNewsFragment.getActivity().overridePendingTransition(R.anim.slide_from_right,R.anim.slide_from_right);
         getFragmentManager().beginTransaction()
             .replace(R.id.container, allNewsFragment)
             .addToBackStack(null)
@@ -359,6 +361,7 @@ public class HomeFragment extends Fragment {
       @Override
       public void onClick(View view) {
 //        moreFragment.setEnterTransition(new Slide());
+        allNewsFragment.getActivity().overridePendingTransition(R.anim.slide_from_right,R.anim.slide_from_right);
         getFragmentManager().beginTransaction()
             .replace(R.id.container, allNewsFragment)
             .addToBackStack(null)
@@ -370,6 +373,7 @@ public class HomeFragment extends Fragment {
       @Override
       public void onClick(View view) {
 //        moreFragment.setEnterTransition(new Slide());
+        allNewsFragment.getActivity().overridePendingTransition(R.anim.slide_from_right,R.anim.slide_from_right);
         getFragmentManager().beginTransaction()
             .replace(R.id.container, allNewsFragment)
             .addToBackStack(null)

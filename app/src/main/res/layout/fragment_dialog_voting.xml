@@ -28,7 +28,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:transitionName="img_voting"/>
 
       <View
         android:layout_width="0dp"
@@ -79,6 +80,8 @@
         android:padding="12dp"
         android:src="@drawable/share"
         android:layout_height="?attr/actionBarSize"
+        android:clickable="true"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/txt_nama_voting"

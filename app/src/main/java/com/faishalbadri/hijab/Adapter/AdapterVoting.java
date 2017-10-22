@@ -1,12 +1,10 @@
 package com.faishalbadri.hijab.Adapter;
 
 import android.app.Activity;
-import android.app.FragmentManager;
-import android.content.Context;
+import android.app.ActivityOptions;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -17,8 +15,6 @@ import com.bumptech.glide.load.DecodeFormat;
 import com.bumptech.glide.request.RequestOptions;
 import com.faishalbadri.hijab.FragmentVoting.FragmentVotingDialog;
 import com.faishalbadri.hijab.Helper.Server;
-import com.faishalbadri.hijab.Model.PojoSession;
-import com.faishalbadri.hijab.Model.PojoSession.SessionBean;
 import com.faishalbadri.hijab.Model.PojoVoting;
 import com.faishalbadri.hijab.Model.PojoVoting.VotingBean;
 import com.faishalbadri.hijab.R;
@@ -49,7 +45,7 @@ public class AdapterVoting extends RecyclerView.Adapter<AdapterVoting.ViewHolder
   }
 
   @Override
-  public void onBindViewHolder(ViewHolder holder, int position) {
+  public void onBindViewHolder(final ViewHolder holder, int position) {
     final PojoVoting.VotingBean listitem = list_data.get(position);
     RequestOptions options = new RequestOptions().fitCenter().format(DecodeFormat.PREFER_ARGB_8888)
         .override(150, 150);
@@ -69,6 +65,7 @@ public class AdapterVoting extends RecyclerView.Adapter<AdapterVoting.ViewHolder
         android.support.v4.app.FragmentManager fm = activity.getSupportFragmentManager();
         FragmentVotingDialog alert = new FragmentVotingDialog();
         alert.setArguments(bundle);
+        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) context, v, "img_voting");
         alert.show(fm,"");
       }
     });
