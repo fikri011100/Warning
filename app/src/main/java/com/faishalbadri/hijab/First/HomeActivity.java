@@ -1,34 +1,26 @@
 package com.faishalbadri.hijab.First;
 
-import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract.Profile;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.FragmentManager.OnBackStackChangedListener;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.transition.ChangeBounds;
 import android.transition.Slide;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
 import com.android.volley.Request.Method;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -39,6 +31,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DecodeFormat;
 import com.bumptech.glide.request.RequestOptions;
 import com.faishalbadri.hijab.ActivityList.ListVideoActivity;
+import com.faishalbadri.hijab.ActivityList.SearchActivity;
 import com.faishalbadri.hijab.FragmentNavigation.AllNewsFragment;
 import com.faishalbadri.hijab.FragmentNavigation.HomeFragment;
 import com.faishalbadri.hijab.FragmentNavigation.KategoriFragment;
@@ -46,18 +39,16 @@ import com.faishalbadri.hijab.FragmentNavigation.TopNewsFragment;
 import com.faishalbadri.hijab.FragmentVoting.VotingFragment;
 import com.faishalbadri.hijab.Helper.Server;
 import com.faishalbadri.hijab.Helper.SessionManager;
-
 import com.faishalbadri.hijab.KritikSaran;
+import com.faishalbadri.hijab.Model.PojoUser;
 import com.faishalbadri.hijab.ProfileActivity;
 import com.faishalbadri.hijab.R;
-import com.faishalbadri.hijab.ActivityList.SearchActivity;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.util.HashMap;
 import java.util.Map;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -133,29 +124,16 @@ public class HomeActivity extends AppCompatActivity
               if (String.valueOf(new JSONObject(response).getString("msg"))
                   .equals("Data Semua User")) {
                 try {
-                  JSONObject jsonObject = new JSONObject(response);
-                  JSONArray jsonArray = jsonObject.getJSONArray("user");
-                  for (int a = 0; a < jsonArray.length(); a++) {
-                    JSONObject json = jsonArray.getJSONObject(a);
-                    HashMap<String, String> map = new HashMap<String, String>();
-                    map.put("id_user", json.getString("id_user"));
-                    map.put("username", json.getString("username"));
-                    map.put("img_user", json.getString("img_user"));
-                    idUser = json.getString("id_user");
-                    imgUser = json.getString("img_user");
-                    username = json.getString("username");
-                    RequestOptions options = new RequestOptions()
-                        .circleCrop()
-                        .placeholder(R.mipmap.ic_launcher)
-                        .format(DecodeFormat.PREFER_ARGB_8888).override(150, 150);
-                    Glide.with(getApplicationContext())
-                        .load(Server.BASE_IMG + imgUser)
-                        .apply(options)
-                        .into(imageUseer);
+                  PojoUser pojoUser = gsonLogin.fromJson(response, PojoUser.class);
+
+                  for (int a = 0; a < pojoUser.getUser().size(); a++) {
+                    idUser = pojoUser.getUser().get(a).getId_user();
+                    imgUser = pojoUser.getUser().get(a).getImg_user();
+                    username = pojoUser.getUser().get(a).getEmail();
 
                     setUserProfile();
                   }
-                } catch (JSONException e) {
+                } catch (Exception e) {
                   e.printStackTrace();
                 }
               } else {
@@ -184,6 +162,14 @@ public class HomeActivity extends AppCompatActivity
   }
 
   private void setUserProfile() {
+    RequestOptions options = new RequestOptions()
+        .circleCrop()
+        .placeholder(R.mipmap.ic_launcher)
+        .format(DecodeFormat.PREFER_ARGB_8888).override(150, 150);
+    Glide.with(getApplicationContext())
+        .load(Server.BASE_IMG + imgUser)
+        .apply(options)
+        .into(imageUseer);
     txtUsername.setText(username);
   }
 
