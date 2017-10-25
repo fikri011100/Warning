@@ -1,4 +1,4 @@
-package com.faishalbadri.hijab.FragmentVoting;
+package com.faishalbadri.hijab.FragmentDialog;
 
 
 import android.app.Dialog;

@@ -4,7 +4,7 @@
   android:layout_height="wrap_content"
   app:cardCornerRadius="5dp"
   xmlns:app="http://schemas.android.com/apk/res-auto"
-  tools:context="com.faishalbadri.hijab.FragmentVoting.FragmentVotingDialog">
+  tools:context="com.faishalbadri.hijab.FragmentDialog.FragmentVotingDialog">
 
   <RelativeLayout
     android:id="@+id/invisible_relative_dialog_fragment"

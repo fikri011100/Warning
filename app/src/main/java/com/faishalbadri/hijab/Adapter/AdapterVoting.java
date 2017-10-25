@@ -1,7 +1,6 @@
 package com.faishalbadri.hijab.Adapter;
 
 import android.app.Activity;
-import android.app.ActivityOptions;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewCompat;
@@ -14,7 +13,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DecodeFormat;
 import com.bumptech.glide.request.RequestOptions;
-import com.faishalbadri.hijab.FragmentVoting.FragmentVotingDialog;
+import com.faishalbadri.hijab.FragmentDialog.FragmentVotingDialog;
 import com.faishalbadri.hijab.Helper.Server;
 import com.faishalbadri.hijab.Model.PojoVoting;
 import com.faishalbadri.hijab.Model.PojoVoting.VotingBean;

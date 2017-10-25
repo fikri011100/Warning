@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -33,6 +34,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.faishalbadri.hijab.AboutActivity;
 import com.faishalbadri.hijab.ActivityList.ListVideoActivity;
 import com.faishalbadri.hijab.ActivityList.SearchActivity;
+import com.faishalbadri.hijab.FragmentDialog.FragmentExitDialog;
 import com.faishalbadri.hijab.FragmentNavigation.AllNewsFragment;
 import com.faishalbadri.hijab.FragmentNavigation.EbookFragment;
 import com.faishalbadri.hijab.FragmentNavigation.HomeFragment;
@@ -164,6 +166,8 @@ public class HomeActivity extends AppCompatActivity
     reqLogin.add(request);
   }
 
+
+
   private void setUserProfile() {
     RequestOptions options = new RequestOptions()
         .circleCrop()
@@ -200,11 +204,11 @@ public class HomeActivity extends AppCompatActivity
   @Override
   public void onBackPressed() {
     DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-    int count = getFragmentManager().getBackStackEntryCount();
     if (drawer.isDrawerOpen(GravityCompat.START)) {
       drawer.closeDrawer(GravityCompat.START);
     } else {
-      super.onBackPressed();
+      FragmentExitDialog alert = new FragmentExitDialog();
+      alert.show(getSupportFragmentManager(),"");
     }
   }
 
@@ -388,8 +392,7 @@ public class HomeActivity extends AppCompatActivity
       setTitle("Referensi");
       kategoriFragment();
     } else if (id == R.id.kirimartikelmu) {
-      startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
-      this.overridePendingTransition(R.anim.slide_from_right,R.anim.slide_from_right);
+
     } else if (id == R.id.kritiksaran) {
       startActivity(new Intent(getApplicationContext(), KritikSaran.class));
       this.overridePendingTransition(R.anim.slide_from_right,R.anim.slide_from_right);
