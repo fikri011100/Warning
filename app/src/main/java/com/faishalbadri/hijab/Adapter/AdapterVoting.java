@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ActivityOptions;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -65,6 +66,8 @@ public class AdapterVoting extends RecyclerView.Adapter<AdapterVoting.ViewHolder
         android.support.v4.app.FragmentManager fm = activity.getSupportFragmentManager();
         FragmentVotingDialog alert = new FragmentVotingDialog();
         alert.setArguments(bundle);
+        activity.getFragmentManager().beginTransaction().addSharedElement(holder.imgGridVote,
+            ViewCompat.getTransitionName(holder.imgGridVote));
 //        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) context, v, "img_voting");
         alert.show(fm,"");
       }

@@ -33,6 +33,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.faishalbadri.hijab.ActivityList.ListVideoActivity;
 import com.faishalbadri.hijab.ActivityList.SearchActivity;
 import com.faishalbadri.hijab.FragmentNavigation.AllNewsFragment;
+import com.faishalbadri.hijab.FragmentNavigation.EbookFragment;
 import com.faishalbadri.hijab.FragmentNavigation.HomeFragment;
 import com.faishalbadri.hijab.FragmentNavigation.KategoriFragment;
 import com.faishalbadri.hijab.FragmentNavigation.TopNewsFragment;
@@ -69,6 +70,7 @@ public class HomeActivity extends AppCompatActivity
   String email;
   Gson gsonLogin;
   String URLLogin = Server.BASE_URL + "getUser.php";
+  private String TAG = HomeFragment.class.getSimpleName();
   Bundle bundleKategori;
   Slide slide;
 
@@ -273,7 +275,12 @@ public class HomeActivity extends AppCompatActivity
     } else if (id == R.id.event) {
 
     } else if (id == R.id.ebook) {
-
+      EbookFragment ebookFragment = new EbookFragment();
+      ebookFragment.setArguments(getIntent().getExtras());
+      getSupportFragmentManager().beginTransaction().replace(R.id.container, ebookFragment, "EbookFragment")
+          .commit();
+      getSupportFragmentManager().popBackStack();
+      setTitle("Ebook");
     } else if (id == R.id.vote) {
       Bundle bundle = new Bundle();
       bundle.putString("id", idUser);
