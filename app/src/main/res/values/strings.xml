@@ -13,6 +13,7 @@
   <string name="recently">Berita Hot</string>
   <string name="title_activity_list_isi">ListIsiActivity</string>
   <string name="ads_footer">ca-app-pub-6242493810500826/4487972485</string>
+  <string name="version_about">Pinky Hijab\nVersion 1.0</string>
   <!-- TODO: Remove or change this placeholder text -->
   <string name="hello_blank_fragment">Hello blank fragment</string>
   <string name="title_activity_detail">DetailActivity</string>

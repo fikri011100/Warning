@@ -30,6 +30,7 @@ import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DecodeFormat;
 import com.bumptech.glide.request.RequestOptions;
+import com.faishalbadri.hijab.AboutActivity;
 import com.faishalbadri.hijab.ActivityList.ListVideoActivity;
 import com.faishalbadri.hijab.ActivityList.SearchActivity;
 import com.faishalbadri.hijab.FragmentNavigation.AllNewsFragment;
@@ -393,7 +394,7 @@ public class HomeActivity extends AppCompatActivity
       startActivity(new Intent(getApplicationContext(), KritikSaran.class));
       this.overridePendingTransition(R.anim.slide_from_right,R.anim.slide_from_right);
     } else if (id == R.id.about) {
-
+      startActivity(new Intent(HomeActivity.this, AboutActivity.class));
     } else if (id == R.id.share) {
 
     } else if (id == R.id.logout) {
