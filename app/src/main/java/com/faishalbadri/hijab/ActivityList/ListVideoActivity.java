@@ -15,6 +15,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.faishalbadri.hijab.Adapter.AdapterListVideo;
 import com.faishalbadri.hijab.Helper.Server;
+import com.faishalbadri.hijab.Model.PojoAds;
 import com.faishalbadri.hijab.Model.PojoVideo;
 import com.faishalbadri.hijab.R;
 import com.google.gson.Gson;

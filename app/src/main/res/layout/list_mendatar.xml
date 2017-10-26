@@ -33,7 +33,7 @@
         android:padding="3dp"
         android:background="#a0333333"
         android:text="11 Januari 2017"
-        android:textColor="#fff" />
+        android:textColor="@android:color/white" />
 
 
       <TextView

@@ -19,6 +19,8 @@ import com.faishalbadri.hijab.Adapter.AdapterListVideo.adViewHolder;
 import com.faishalbadri.hijab.Adapter.AdapterListVideo.itemViewHolder;
 import com.faishalbadri.hijab.DetailActivity.DetailVideoActivity;
 import com.faishalbadri.hijab.Helper.Server;
+import com.faishalbadri.hijab.Model.PojoAds;
+import com.faishalbadri.hijab.Model.PojoAds.AdsBean;
 import com.faishalbadri.hijab.Model.PojoVideo;
 import com.faishalbadri.hijab.Model.PojoVideo.VideoBean;
 import com.faishalbadri.hijab.R;

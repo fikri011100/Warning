@@ -34,8 +34,9 @@
         android:layout_toRightOf="@+id/imgListMenurun"
         android:gravity="center_vertical"
         android:text="Ini Judul yang agak panjang banget"
-        android:textColor="#383737"
-        android:textSize="20sp" />
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        />
 
       <TextView
         android:id="@+id/txtTimeMenurun"
@@ -47,7 +48,7 @@
         android:layout_below="@+id/txtJudulMenurun"
         android:layout_toRightOf="@+id/imgListMenurun"
         android:text="Minggu 10 Desember"
-        android:textColor="#9b9a9a"
+        android:textColor="@android:color/darker_gray"
         android:textSize="11dp" />
 
     </RelativeLayout>
